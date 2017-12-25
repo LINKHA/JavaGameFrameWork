@@ -21,6 +21,7 @@ public class Game extends ScriptSuper{
 	GameObject pic1;
 	GameObject pic2;
 	GameObject pic3;
+	GameObject pic4;
 	public void Init() {
 
 		pic1 = new GameObject(LoadImage.load("EnemyFly.png"), new Vector2(0,0), 300, 200);
@@ -30,7 +31,11 @@ public class Game extends ScriptSuper{
 		pic2.addCollider(new Collider(pic2));
 		
 		pic3 = new GameObject(LoadImage.load("hero.jpg"), new Vector2(800,500), 200, 200);
-		pic3.addCollider(new Collider(pic2));
+		//pic3.addCollider(new Collider(pic3));
+		
+		pic4 = new GameObject(LoadImage.load("hero.jpg"), new Vector2(1200,500), 200, 200);
+		/////////////////////////////////////////////////////////////////////////////////////////////
+		//pic4.addCollider(new Collider(pic4));
 		
 		//Log.Print(pic1.keyValue);
 		
@@ -50,9 +55,9 @@ public class Game extends ScriptSuper{
 		if(Input.getButtonDown(KeyCodeIndex.W)) {
 			pic1.move(0, -3.0f);
 		}
-		if(Input.leftMouseDown()){
+		/*if(Input.leftMouseDown()){
 			Log.Print("p");
-		}
+		}*/
 		//pic2.move(-5, 0);
 		
 	}

@@ -29,6 +29,7 @@ public class GameObject extends Compant implements PaintcControl{
 		this.position = position;
 		this.width = width;
 		this.height = height;
+		Log.Print("Create "+keyValue);
 		Screen.addToScreen(this);
 	}
 	public void paint(Graphics g) {
@@ -61,10 +62,10 @@ public class GameObject extends Compant implements PaintcControl{
 	}
 	@Override
 	public void Destroy() {
-		Log.Print(("delete "+keyValue));
 		Screen.deleteToScreen(keyValue);
 		
 		if(collider!=null) {
+			Log.Print(("delete "+keyValue));
 			collider.Destroy();
 		}
 	}

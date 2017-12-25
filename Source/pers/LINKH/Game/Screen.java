@@ -15,7 +15,7 @@ public class Screen extends JPanel {
 	
 	Application baseClass;
 	private boolean fpsCounter = false;
-	static Map<String, Compant> controls = new Hashtable<String, Compant>() ;
+	static Map<Integer, Compant> controls = new Hashtable<Integer, Compant>() ;
 	
 	
 	
@@ -54,12 +54,11 @@ public class Screen extends JPanel {
 	}*/
 	
 	public static void addToScreen(Compant gameObj) {
-		controls.put(gameObj.keyValue+"",gameObj);
-		Log.Print("add "+gameObj.keyValue);
+		controls.put(gameObj.keyValue,gameObj);
 	}
 	public static void deleteToScreen(int keyValue) {
-		controls.remove(keyValue+"");
-		Log.Print("delete  "+keyValue);
+		controls.remove(keyValue);
+		Log.Print("deleteToScreen  "+keyValue);
 
 	}
 }
