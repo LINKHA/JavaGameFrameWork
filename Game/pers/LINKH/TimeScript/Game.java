@@ -30,9 +30,10 @@ public class Game extends ScriptSuper{
 		pic3.addCollider(new Collider(pic3));
 		
 		pic4 = new GameObject(LoadImage.load("hero.jpg"), new Vector2(1200,500), 200, 200);
-		pic3.setTag(Tag.Enemy);
+		pic4.setTag(Tag.Enemy);
 		pic4.addCollider(new Collider(pic4));
-		//if(pic1.getHix())
+		
+	
 		
 		
 		
@@ -57,11 +58,10 @@ public class Game extends ScriptSuper{
 		/*if(Input.leftMouseDown()){
 			Log.Print("p");
 		}*/
-		//pic2.move(-5, 0);
-		/////////////////////////////////////////////////////////////////////////////////////////////
-		//问题    hit不为true
-		/////////////////////////////////////////////////////////////////////////////////////////////
+		pic2.move(-1, 0);
+
 		if(pic1.getCollision().hit(Tag.Enemy)) {
+			
 			Log.Print("hit");
 		}
 	}

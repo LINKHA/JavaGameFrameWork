@@ -58,7 +58,6 @@ public class Screen extends JPanel {
 	}
 	public static void deleteToScreen(int keyValue) {
 		controls.remove(keyValue);
-		Log.Print("deleteToScreen  "+keyValue);
 
 	}
 }

@@ -24,7 +24,7 @@ public class GameObject extends Compant implements PaintcControl{
 		this.width = width;
 		this.height = height;
 		if(tag==null) {
-			tag = Tag.Default;
+			this.tag = Tag.Default;
 		}
 		this.tag = tag;
 		Screen.addToScreen(this);
@@ -84,7 +84,6 @@ public class GameObject extends Compant implements PaintcControl{
 		Screen.deleteToScreen(keyValue);
 		
 		if(collider!=null) {
-			Log.Print(("delete "+keyValue));
 			collider.Destroy();
 		}
 	}

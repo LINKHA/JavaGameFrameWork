@@ -9,6 +9,7 @@ import pers.LINKH.Game.Tools.Log;
 public class Collider  extends Collision {
 	RectHitBox hitBox;
 	GameObject gameObject;
+	//碰撞该物体的碰撞体
 	private  Collision collision = null;
 	private  boolean isHit = false;
 	
@@ -24,24 +25,18 @@ public class Collider  extends Collision {
 	}
 	@Override
 	public void begainHit() {
-		// TODO Auto-generated method stub
-		Log.Print("begainHit");
+		
 	}
 	@Override
 	public void onHit(Collision collision) {
-		//Log.Print(isHit);
 		isHit = true;
 		this.collision = collision;
-		
-		//Log.Print("hit");
-		
 	}
 	@Override
 	public void releaseHit() {
 		
 		isHit = false;
 		this.collision = null;
-		Log.Print("releaseHit");
 		
 	}
 	@Override
@@ -54,6 +49,7 @@ public class Collider  extends Collision {
 	 */
 	@Override
 	public  Boolean isHit() {
+		
 		return isHit;
 	}
 	/*
@@ -68,9 +64,6 @@ public class Collider  extends Collision {
 	 */
 	@Override
 	public boolean hit(Tag tag) {
-		if(isHit==true) {
-			Log.Print(isHit," ");
-		}
 		if(isHit && collision!=null && tag == collision.tag) 
 			return true;
 		return false;
