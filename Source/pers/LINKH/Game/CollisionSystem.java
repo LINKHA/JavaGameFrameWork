@@ -6,6 +6,7 @@ import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+
 import pers.LINKH.Game.Compant.Collider;
 import pers.LINKH.Game.Compant.Collision;
 import pers.LINKH.Game.Tools.Log;
@@ -13,9 +14,11 @@ import pers.LINKH.Game.Tools.Log;
 class ColliderMessage{
 	public int keyValue;
 	public Collision collider;
+	public boolean bHit;
 	ColliderMessage(int keyValue,Collision collider){
 		this.keyValue = keyValue;
 		this.collider = collider;
+		this.bHit = false;
 	}
 }
 
@@ -23,26 +26,41 @@ class ColliderMessage{
 public class CollisionSystem implements FrameSystem {
 	
 	private static CollisionSystem instance;
-	//private  Map<String,Collision> colliders = new Hashtable<String,Collision>();
 	private List <ColliderMessage> colliders = new ArrayList<ColliderMessage>();
 	private CollisionSystem(){}
 	
 	
-	public  List<Collision[]> checkCollisions(){
-		List<Collision[]> collistions = new ArrayList<Collision[]>();
+	public  List<ColliderMessage[]> checkCollisions(){
+		List<ColliderMessage[]> collistions = new ArrayList<ColliderMessage[]>();
 		if(colliders.size()==1) {
 			return collistions;
 		}
-		Collision[] current = new Collider[2];
+		//判断碰撞体是否在遍历后有碰撞
+		boolean s = false;
+		ColliderMessage[] current = new ColliderMessage[2];
 		for(ColliderMessage c : colliders) {
+			s = false;
 			for(ColliderMessage k : colliders) {
 				if(c.keyValue!=k.keyValue) {
-					current[0] =c.collider;
-					current[1] =k.collider;
-					if(current[0].getHitBox().intersects(current[1].getHitBox())) {
+					current[0] =c;
+					current[1] =k;
+					if(current[0].collider.getHitBox().intersects(current[1].collider.getHitBox())) {
+						if(c.bHit==false) {
+							c.collider.begainHit();
+						}
+						if(k.bHit==false) {
+							k.collider.begainHit();
+						}
+						c.bHit = true; k.bHit=true;
+						s = true;
 						collistions.add(current);
 					}
 				}
+			}
+			//碰撞体遍历后无碰撞
+			if(c.bHit==true && s==false) {
+				c.bHit = false;
+				c.collider.releaseHit();
 			}
 		}
 		return collistions;
@@ -51,9 +69,9 @@ public class CollisionSystem implements FrameSystem {
 		if(checkCollisions().size()==0) {
 			return;
 		}
-		for(Collision[] current:checkCollisions()) {
-			current[0].onHit(current[1]);
-			current[1].onHit(current[0]);
+		for(ColliderMessage[] current:checkCollisions()) {
+			current[0].collider.onHit(current[1].collider);
+			current[1].collider.onHit(current[0].collider);
 		}
 	}
 	@Override
@@ -75,8 +93,6 @@ public class CollisionSystem implements FrameSystem {
 	
 
 	public   void addCollider(Collision collider) {
-		Log.Print("add Colloder "+collider.keyValue);
-		//colliders.put(collider.keyValue+"", collider);
 		
 		//遍历  检查是否有重复
 		for(ColliderMessage checkValue : colliders) {

@@ -6,8 +6,6 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import javax.swing.JFrame;
 
-import pers.LINKH.Game.Compant.Collider;
-import pers.LINKH.Game.Compant.Collision;
 import pers.LINKH.Game.Compant.GameObject;
 import pers.LINKH.Game.Helper.KeyCodeIndex;
 import pers.LINKH.Game.Helper.Vector2;

@@ -7,6 +7,7 @@ import pers.LINKH.Game.PaintcControl;
 import pers.LINKH.Game.Screen;
 import pers.LINKH.Game.Helper.Vector2;
 import pers.LINKH.Game.Setting.Setting;
+import pers.LINKH.Game.Setting.Tag;
 import pers.LINKH.Game.Tools.Log;
 
 public class GameObject extends Compant implements PaintcControl{
@@ -16,21 +17,27 @@ public class GameObject extends Compant implements PaintcControl{
 	private int height;
 	Image image;
 	Collision collider = null;
-	public GameObject(Image image,float x,float y,int width,int height) {
+	public GameObject(Image image,float x,float y,int width,int height,Tag tag ) {
 		this.image = image;
 		position.x = x;
 		position.y = y;
 		this.width = width;
 		this.height = height;
+		if(tag==null) {
+			tag = Tag.Default;
+		}
+		this.tag = tag;
 		Screen.addToScreen(this);
+
+	}
+	public GameObject(Image image,Vector2 position,int width,int height,Tag tag) {
+		this(image,position.x, position.y,width,height, tag);
+	}
+	public GameObject(Image image,float x,float y,int width,int height) {
+		this(image,x, y,width,height, Tag.Default);
 	}
 	public GameObject(Image image,Vector2 position,int width,int height) {
-		this.image = image;
-		this.position = position;
-		this.width = width;
-		this.height = height;
-		Log.Print("Create "+keyValue);
-		Screen.addToScreen(this);
+		this(image,position.x, position.y,width,height, Tag.Default);
 	}
 	public void paint(Graphics g) {
 		if(visible) {
@@ -39,6 +46,7 @@ public class GameObject extends Compant implements PaintcControl{
 	}
 	public void addCollider(Collision collider) {
 		this.collider = collider;
+		this.collider.tag =tag;
 	}
 	public void move(float deltaX,float deltaY) {
 		position.x+=deltaX;
@@ -47,7 +55,15 @@ public class GameObject extends Compant implements PaintcControl{
 			collider.move();
 		}
 	}
-	
+	public void setTag(Tag tag) {
+		this.tag = tag;
+		if(collider!=null) {
+			collider.tag =tag;
+		}
+	}
+	public Tag getTag() {
+		return tag;
+	}
 	public Vector2 getPosition() {
 		return position;
 	}
@@ -59,6 +75,9 @@ public class GameObject extends Compant implements PaintcControl{
 	}
 	public int getkeyValue() {
 		return keyValue;
+	}
+	public Collision getCollision() {
+		return collider;
 	}
 	@Override
 	public void Destroy() {
