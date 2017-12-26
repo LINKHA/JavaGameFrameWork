@@ -6,7 +6,9 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
+import pers.LINKH.Game.AppStates;
 import pers.LINKH.Game.Application;
+import pers.LINKH.Game.Helper.KeyCodeIndex;
 import pers.LINKH.Game.Helper.Vector2;
 import pers.LINKH.Game.Tools.Log;
 
@@ -23,19 +25,18 @@ public class Input implements KeyListener, MouseListener,MouseMotionListener{
 	}
 	@Override
 	public void mouseDragged(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
+		baseClass.mouseDragged();
 	}
 	@Override
 	public void mouseMoved(MouseEvent e) {
 		// TODO Auto-generated method stub
 		MouseLocation.x =e.getX();
 		MouseLocation.y =e.getY();
+		baseClass.mouseMoved(MouseLocation);
 	}
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
+		baseClass.mouseClicked();
 	}
 	@Override
 	public void mousePressed(MouseEvent e) {

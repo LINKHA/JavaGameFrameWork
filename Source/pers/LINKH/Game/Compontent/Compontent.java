@@ -1,12 +1,12 @@
-package pers.LINKH.Game.Compant;
+package pers.LINKH.Game.Compontent;
 
 import pers.LINKH.Game.Setting.Setting;
 import pers.LINKH.Game.Setting.Tag;
 
-public abstract class Compant {
+public abstract class Compontent {
 	public int keyValue;
 	protected Tag tag;
-	protected Compant(){
+	protected Compontent(){
 		keyValue = Setting.ObjectKey++;
 	}
 	public abstract void Destroy();

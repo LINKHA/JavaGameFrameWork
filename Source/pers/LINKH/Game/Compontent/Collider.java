@@ -1,4 +1,4 @@
-package pers.LINKH.Game.Compant;
+package pers.LINKH.Game.Compontent;
 
 import java.awt.Image;
 import pers.LINKH.Game.CollisionSystem;

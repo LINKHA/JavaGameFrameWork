@@ -1,11 +1,11 @@
-package pers.LINKH.Game.Compant;
+package pers.LINKH.Game.Compontent;
 
 import pers.LINKH.Game.CollisionSystem;
 import pers.LINKH.Game.Setting.Setting;
 import pers.LINKH.Game.Setting.Tag;
 import pers.LINKH.Game.Tools.Log;
 
-public abstract class Collision extends Compant {
+public abstract class Collision extends Compontent {
 	public abstract RectHitBox getHitBox();
 	/*
 	 * 发生碰撞调用此方法

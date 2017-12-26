@@ -7,8 +7,9 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import pers.LINKH.Game.ScriptSuper;
-import pers.LINKH.Game.Compant.Collider;
-import pers.LINKH.Game.Compant.GameObject;
+import pers.LINKH.Game.Compontent.Collider;
+import pers.LINKH.Game.Compontent.GameObject;
+import pers.LINKH.Game.Compontent.UI.Button;
 import pers.LINKH.Game.Helper.KeyCodeIndex;
 import pers.LINKH.Game.Helper.Vector2;
 import pers.LINKH.Game.Operate.Input;
@@ -21,6 +22,7 @@ public class Game extends ScriptSuper{
 	GameObject pic2;
 	GameObject pic3;
 	GameObject pic4;
+	GameObject pic5;
 	List<GameObject> picGameObjects = new ArrayList<GameObject>();
 	int i=0;
 	public void Init() {
@@ -40,6 +42,10 @@ public class Game extends ScriptSuper{
 		pic4 = new GameObject(LoadImage.load("hero.jpg"), new Vector2(Toolkit.getDefaultToolkit().getScreenSize().width - 100,Toolkit.getDefaultToolkit().getScreenSize().height - 100), 200, 200);
 		pic4.setTag(Tag.Enemy);
 		pic4.addCollider(new Collider(pic4));
+		
+		pic5 = new GameObject(LoadImage.load("hero.jpg"), new Vector2(800,200), 200, 200);
+		pic5.setTag(Tag.Enemy);
+		pic5.addButton((new Button(pic5)));
 		
 
 				/*new Timer().schedule(new TimerTask() {

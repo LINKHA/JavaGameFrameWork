@@ -7,7 +7,7 @@ import java.util.Iterator;
 import java.util.Map;
 import javax.swing.JPanel;
 
-import pers.LINKH.Game.Compant.Compant;
+import pers.LINKH.Game.Compontent.Compontent;
 import pers.LINKH.Game.Tools.Log;
 
 public class Screen extends JPanel {
@@ -16,7 +16,7 @@ public class Screen extends JPanel {
 	
 	Application baseClass;
 	private boolean fpsCounter = false;
-	static Map<Integer, Compant> controls = new Hashtable<Integer, Compant>() ;
+	static Map<Integer, Compontent> controls = new Hashtable<Integer, Compontent>() ;
 	
 	
 	
@@ -54,7 +54,7 @@ public class Screen extends JPanel {
 		return instance;
 	}*/
 	
-	public static void addToScreen(Compant gameObj) {
+	public static void addToScreen(Compontent gameObj) {
 		controls.put(gameObj.keyValue,gameObj);
 	}
 	public static void deleteToScreen(int keyValue) {

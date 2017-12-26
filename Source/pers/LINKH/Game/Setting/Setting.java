@@ -15,8 +15,7 @@ public class Setting {
 	//设置窗口锚点
 	public static Vector2 WindowRect = new Vector2(Vector2.zero());
 	//设置窗口大小
-	//public static Vector2 WindowSize = new Vector2(ScreenSize.SIZE);
-	public static Vector2 WindowSize = new Vector2(1920,800);
+	public static Vector2 WindowSize = new Vector2(ScreenSize.SIZE);
 	//设置窗口顶部按钮是否去除
 	public static boolean WIndwUndecorated = true;
 }

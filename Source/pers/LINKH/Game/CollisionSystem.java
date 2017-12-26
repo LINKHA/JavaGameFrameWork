@@ -6,8 +6,9 @@ import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import pers.LINKH.Game.Compant.Collider;
-import pers.LINKH.Game.Compant.Collision;
+
+import pers.LINKH.Game.Compontent.Collider;
+import pers.LINKH.Game.Compontent.Collision;
 import pers.LINKH.Game.Tools.Log;
 
 class ColliderMessage{
@@ -65,35 +66,17 @@ public class CollisionSystem implements FrameSystem {
 		return collistions;
 	}
 	public void performCollistions() {
-		if(colliders.size()<=1) {
+		if(colliders.size()<=1) 
 			return;
-		}
 		for(ColliderMessage[] current:checkCollisions()) {
-//			Log.Print("Print"+current[0].keyValue);
-//			Log.Print("Print"+current[1].keyValue);
 			current[0].collider.onHit(current[1].collider);
 			current[1].collider.onHit(current[0].collider);
 		}
 	}
-	@Override
-	public void addSystemInit() {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void addSystemRunLoop() {
-		// TODO Auto-generated method stub
-		//checkCollisions();
-		performCollistions();
-	}
-	@Override
-	public void addSystemDestruction() {
-		// TODO Auto-generated method stub
-		
-	}
+
 	
 
-	public   void addCollider(Collision collider) {
+	public  void addCollider(Collision collider) {
 		
 		//遍历  检查是否有重复
 		for(ColliderMessage checkValue : colliders) {
@@ -124,6 +107,70 @@ public class CollisionSystem implements FrameSystem {
 			instance = new CollisionSystem();
 		}
 		return instance;
+	}
+
+	@Override
+	public void addSystemInit() {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void addSystemRunLoop() {
+		// TODO Auto-generated method stub
+		//checkCollisions();
+		performCollistions();
+	}
+	@Override
+	public void addSystemDestruction() {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void addSystemKeyPressed() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void addSystemKeyReleased() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void addSystemMousePressed() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void addSystemMouseReleased() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void addSystemMouseMoved() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void addSystemMouseDragged() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void addSystemMouseClicked() {
+		// TODO Auto-generated method stub
+		
 	}
 }
 	

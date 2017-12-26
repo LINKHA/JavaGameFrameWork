@@ -1,17 +1,17 @@
-package pers.LINKH.Game.Compant;
+package pers.LINKH.Game.Compontent;
 
 import java.awt.Graphics;
 import java.awt.Image;
 
 import pers.LINKH.Game.PaintcControl;
 import pers.LINKH.Game.Screen;
-import pers.LINKH.Game.Compant.UI.Button;
+import pers.LINKH.Game.Compontent.UI.Button;
 import pers.LINKH.Game.Helper.Vector2;
 import pers.LINKH.Game.Setting.Setting;
 import pers.LINKH.Game.Setting.Tag;
 import pers.LINKH.Game.Tools.Log;
 
-public class GameObject extends Compant implements PaintcControl{
+public class GameObject extends Compontent implements PaintcControl{
 	protected boolean visible = true;
 	private Vector2 position = new Vector2();
 	private int width;
@@ -52,7 +52,6 @@ public class GameObject extends Compant implements PaintcControl{
 	}
 	public void addButton(Button button) {
 		this.button = button;
-		this
 	}
 	public void move(float deltaX,float deltaY) {
 		position.x+=deltaX;

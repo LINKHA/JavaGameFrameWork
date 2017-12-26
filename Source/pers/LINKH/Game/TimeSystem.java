@@ -48,26 +48,48 @@ public class TimeSystem implements FrameSystem{
 		
 	}
 
+	@Override
+	public void addSystemKeyPressed() {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void addSystemKeyReleased() {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void addSystemMousePressed() {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void addSystemMouseReleased() {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void addSystemMouseMoved() {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void addSystemMouseDragged() {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void addSystemMouseClicked() {
+		// TODO Auto-generated method stub
+		
+	}
 	public static TimeSystem getSystem() {
 		if(instance==null) {
 			instance = new TimeSystem();
 		}
 		return instance;
 	}
-/////////////////////////////////////////////////////////////////////////////////////////////
-//暴露给应用层的接口
-//类:Input
-/////////////////////////////////////////////////////////////////////////////////////////////
-	/*
-	 * 游戏开始时调用进行记录时间操作
-	 * 在delay秒后
-	 * 每interval秒执行一次
-	 */
-	//new Timer().schedule(new TimerTask() {
-	//@Override
-	//public void run() {
-	
-	//}
-//	}, 0,2);
+
+
 }
 

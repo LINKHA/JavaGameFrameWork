@@ -4,9 +4,13 @@ package pers.LINKH.Game;
 import java.awt.Frame;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.event.MouseEvent;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 
-import pers.LINKH.Game.Compant.GameObject;
+import pers.LINKH.Game.Compontent.GameObject;
 import pers.LINKH.Game.Helper.KeyCodeIndex;
 import pers.LINKH.Game.Helper.Vector2;
 import pers.LINKH.Game.Operate.Input;
@@ -25,37 +29,35 @@ public class Application extends JFrame{
 	public static double deltaTime = 0.0f;
 	public static int FPS = 0;
 /////////////////////////////////////////////////////////////////////////////////////////////
-	
-	
-	
 	/*
 	 * Game Frame System
 	 */
 	FrameSystem collisionSystem;
 	FrameSystem timeSystem;
 	FrameSystem scriptSystem;
+	FrameSystem uiSystem;
 	
 	public Application() throws Exception {
 		_appStates = AppStates.INIT;
 		screen = new Screen(this);
 		add(screen);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	//用户单击窗口的关闭按钮时程序执行的操作
-		setFocusable(true);	//设置焦点为true
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setFocusable(true);	
 		addKeyListener(input);	
 		addMouseListener(input);
 		addMouseMotionListener(input);
 		setLocation((int)Setting.WindowRect.x, (int)Setting.WindowRect.y);
 		setSize((int)Setting.WindowSize.x,(int)Setting.WindowSize.y);
-		
 		setUndecorated(Setting.WIndwUndecorated);
-		 //设置窗体可见，没有该语句，窗体将不可见，此语句必须有，否则没有界面就没有如何意义了
 		setVisible(true);
 		/////////////////////////////////////////////////////////////////////////////////////////////
 		//add System Sington/////////////////////////////////////////////////////////////////////
 		collisionSystem = CollisionSystem.getSystem();
 		timeSystem = TimeSystem.getSystem();
 		scriptSystem = ScriptSystem.getSystem();
+		uiSystem = UISystem.getSystem();
 		/////////////////////////////////////////////////////////////////////////////////////////////
+
 	}
 	/*
 	 * 框架核心循环
@@ -114,25 +116,54 @@ public class Application extends JFrame{
 	}
 	/*
 	 * 接收键值为keyCode键盘按键按下发生事件
+	 * 接受方法
 	 */
 	public void keyPressed(int keyCode) {
 	
 	}
 	/*
 	 * 接收键值为keyCode键盘按键释放发生事件
+	 * 接收方法
 	 */
 	public void keyReleased(int keyCode) {
-		if(keyCode==KeyCodeIndex.ESC){
-			dispose();
+		if(keyCode==KeyCodeIndex.ESC) {
 			_appStates = AppStates.SHUTDOWN;
+			System.exit(0);
 		}
 	}
-	
+	/*
+	 * 接受键值为mouseIndex鼠标按下事件
+	 * 接收方法
+	 */
 	public void MousePressed(int mouseIndex) {
-		
+		uiSystem.addSystemMousePressed();
 	}
-	
+	/*
+	 * 接收键值为mouseIndex鼠标释放事件
+	 * 接收方法
+	 */
 	public void MouseReleased(int mouseIndex) {
-		
+
+	}
+	/*
+	 * 接收鼠标移动事件
+	 * 接收方法
+	 */
+	public void mouseMoved(Vector2 location) {
+
+	}	
+	/*
+	 * 接收鼠标拖动事件
+	 * 接收方法
+	 */
+	public void mouseDragged() {
+
+	}
+	/*
+	 * 接收鼠标点击事件(释放时调用)
+	 * 接收方法
+	 */
+	public void mouseClicked() {
+
 	}
 }

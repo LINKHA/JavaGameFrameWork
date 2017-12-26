@@ -64,6 +64,19 @@ public class ScriptSystem implements FrameSystem {
 	    }
 	    return sb.toString();
 	}
+
+
+	public static ScriptSystem getSystem() throws Exception {
+		if(instance==null) {
+			instance = new ScriptSystem();
+		}
+		return instance;
+	}
+
+	public void addScript(ScriptSuper s) {
+		scripts.add(s);
+	}
+
 	
 	
 	
@@ -91,15 +104,52 @@ public class ScriptSystem implements FrameSystem {
 			s.Destruction();
 		}
 	}
-
-	public static ScriptSystem getSystem() throws Exception {
-		if(instance==null) {
-			instance = new ScriptSystem();
-		}
-		return instance;
+	
+	@Override
+	public void addSystemKeyPressed() {
+		// TODO Auto-generated method stub
+		
 	}
 
-	public void addScript(ScriptSuper s) {
-		scripts.add(s);
+
+	@Override
+	public void addSystemKeyReleased() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void addSystemMousePressed() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void addSystemMouseReleased() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void addSystemMouseMoved() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void addSystemMouseDragged() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void addSystemMouseClicked() {
+		// TODO Auto-generated method stub
+		
 	}
 }
