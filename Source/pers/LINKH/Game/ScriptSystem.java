@@ -5,16 +5,18 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import pers.LINKH.Game.Setting.Setting;
 import pers.LINKH.Game.Tools.Log;
 
 public class ScriptSystem implements FrameSystem {
 	
-	public static String ScriptPackName;
+	private static String ScriptPackName;
 	private static ScriptSystem instance;
 	
 	private  List<Class<?>> classes = new ArrayList<Class<?>>();
 	private  List<ScriptSuper> scripts = new ArrayList<ScriptSuper>();
 	private ScriptSystem() throws Exception {
+		this.ScriptPackName = Setting.ScriptPackName;
 		scan(ScriptPackName,classes);
 		for(Class<?> c : classes ) {
 			ScriptSuper aScriptSuper =(ScriptSuper) c.newInstance();

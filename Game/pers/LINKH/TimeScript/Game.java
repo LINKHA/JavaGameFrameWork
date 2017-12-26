@@ -1,5 +1,11 @@
 package pers.LINKH.TimeScript;
 
+import java.awt.Toolkit;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
+
 import pers.LINKH.Game.ScriptSuper;
 import pers.LINKH.Game.Compant.Collider;
 import pers.LINKH.Game.Compant.GameObject;
@@ -15,8 +21,10 @@ public class Game extends ScriptSuper{
 	GameObject pic2;
 	GameObject pic3;
 	GameObject pic4;
+	List<GameObject> picGameObjects = new ArrayList<GameObject>();
+	int i=0;
 	public void Init() {
-
+		
 		pic1 = new GameObject(LoadImage.load("EnemyFly.png"), new Vector2(0,0), 300, 200);
 		pic1.addCollider(new Collider(pic1));
 
@@ -29,19 +37,31 @@ public class Game extends ScriptSuper{
 		pic3.setTag(Tag.Enemy);
 		pic3.addCollider(new Collider(pic3));
 		
-		pic4 = new GameObject(LoadImage.load("hero.jpg"), new Vector2(1200,500), 200, 200);
+		pic4 = new GameObject(LoadImage.load("hero.jpg"), new Vector2(Toolkit.getDefaultToolkit().getScreenSize().width - 100,Toolkit.getDefaultToolkit().getScreenSize().height - 100), 200, 200);
 		pic4.setTag(Tag.Enemy);
 		pic4.addCollider(new Collider(pic4));
 		
-	
-		
-		
-		
-		//Log.Print(pic1.keyValue);
-		
-		pic3.Destroy();
+
+				/*new Timer().schedule(new TimerTask() {
+					@Override
+					public void run() {
+						Log.Print("run go");
+						picGameObjects.add(new GameObject(LoadImage.load("hero.jpg"), new Vector2(500,500), 200, 200,Tag.Enemy));
+					}
+				}, 1000,2000);*/
+				
+		//pic3.Destroy();
 	}
 	public void RunLoop() {
+		
+		/*for(GameObject gameObject : picGameObjects) {
+				gameObject.move(-3, 0);
+		}
+		for(GameObject gameObject : picGameObjects) {
+				if(gameObject.getPosition().x<=0) {
+					gameObject.Destroy();
+				}
+			}*/
 		// TODO Auto-generated method stub
 		if(Input.getButtonDown(KeyCodeIndex.A)) {
 			pic1.move(-3.0f, 0);
@@ -55,11 +75,15 @@ public class Game extends ScriptSuper{
 		if(Input.getButtonDown(KeyCodeIndex.W)) {
 			pic1.move(0, -3.0f);
 		}
-		/*if(Input.leftMouseDown()){
+		if(Input.rightMouseDown()){
 			Log.Print("p");
-		}*/
+		}
 		pic2.move(-1, 0);
 
+		if(pic2.getPosition().x<=0) {
+			
+			pic2.Destroy();
+		}
 		if(pic1.getCollision().hit(Tag.Enemy)) {
 			
 			Log.Print("hit");

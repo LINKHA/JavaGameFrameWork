@@ -5,6 +5,7 @@ import java.awt.Image;
 
 import pers.LINKH.Game.PaintcControl;
 import pers.LINKH.Game.Screen;
+import pers.LINKH.Game.Compant.UI.Button;
 import pers.LINKH.Game.Helper.Vector2;
 import pers.LINKH.Game.Setting.Setting;
 import pers.LINKH.Game.Setting.Tag;
@@ -17,10 +18,11 @@ public class GameObject extends Compant implements PaintcControl{
 	private int height;
 	Image image;
 	Collision collider = null;
+	Button button = null;
 	public GameObject(Image image,float x,float y,int width,int height,Tag tag ) {
 		this.image = image;
-		position.x = x;
-		position.y = y;
+		position.x = x-width/2.0f;
+		position.y = y-height/2.0f;
 		this.width = width;
 		this.height = height;
 		if(tag==null) {
@@ -47,6 +49,10 @@ public class GameObject extends Compant implements PaintcControl{
 	public void addCollider(Collision collider) {
 		this.collider = collider;
 		this.collider.tag =tag;
+	}
+	public void addButton(Button button) {
+		this.button = button;
+		this
 	}
 	public void move(float deltaX,float deltaY) {
 		position.x+=deltaX;
@@ -81,10 +87,13 @@ public class GameObject extends Compant implements PaintcControl{
 	}
 	@Override
 	public void Destroy() {
-		Screen.deleteToScreen(keyValue);
-		
-		if(collider!=null) {
-			collider.Destroy();
+		if(visible) {
+			Screen.deleteToScreen(keyValue);
+			visible = false;
+			if(collider!=null) {
+				collider.Destroy();
+			}
+			Log.Print(keyValue+" Destory");
 		}
 	}
 }

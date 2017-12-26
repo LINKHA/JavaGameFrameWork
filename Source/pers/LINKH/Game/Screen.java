@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 
 import pers.LINKH.Game.Compant.Compant;
 import pers.LINKH.Game.Tools.Log;
+
 public class Screen extends JPanel {
 	
 	private static Screen instance;

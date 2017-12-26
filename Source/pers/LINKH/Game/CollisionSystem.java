@@ -21,7 +21,6 @@ class ColliderMessage{
 	}
 }
 
-
 public class CollisionSystem implements FrameSystem {
 	
 	private static CollisionSystem instance;
@@ -63,56 +62,6 @@ public class CollisionSystem implements FrameSystem {
 				colliders.get(i).collider.releaseHit();
 			}
 		}
-		/*
-		for(int i = 0; i < colliders.size() ; i++) {
-			s = false;
-			for(int n = i + 1; n < colliders.size(); n++) {
-				ColliderMessage[] current = new ColliderMessage[2];
-				current[0] = colliders.get(i);
-				current[1] = colliders.get(n);
-				if(current[0] .collider.getHitBox().intersects(current[1] .collider.getHitBox())) {
-					if(colliders.get(i).bHit==false) {
-						colliders.get(i).collider.begainHit();
-					}
-					if(colliders.get(n).bHit==false) {
-						colliders.get(n).collider.begainHit();
-					}
-					colliders.get(i).bHit = true; colliders.get(n).bHit=true;
-					s = true;
-					collistions.add(current);
-				}
-			}
-			if(colliders.get(i).bHit==true && s==false) {
-				colliders.get(i).bHit = false;
-				colliders.get(i).collider.releaseHit();
-			}
-		}*/
-		
-		/*for(ColliderMessage c : colliders) {
-			s = false;
-			for(ColliderMessage k : colliders) {
-				if(c.keyValue!=k.keyValue) {
-					current[0] =c;
-					current[1] =k;
-					if(current[0].collider.getHitBox().intersects(current[1].collider.getHitBox())) {
-						if(c.bHit==false) {
-							c.collider.begainHit();
-						}
-						if(k.bHit==false) {
-							k.collider.begainHit();
-						}
-						c.bHit = true; k.bHit=true;
-						s = true;
-						collistions.add(current);
-					}
-				}
-			}
-			//碰撞体遍历后无碰撞
-			if(c.bHit==true && s==false) {
-				c.bHit = false;
-				c.collider.releaseHit();
-			}
-		}*/
 		return collistions;
 	}
 	public void performCollistions() {

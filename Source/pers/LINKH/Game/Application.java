@@ -44,11 +44,12 @@ public class Application extends JFrame{
 		addKeyListener(input);	
 		addMouseListener(input);
 		addMouseMotionListener(input);
-		setSize(Toolkit.getDefaultToolkit().getScreenSize());
-		setUndecorated(true);
+		setLocation((int)Setting.WindowRect.x, (int)Setting.WindowRect.y);
+		setSize((int)Setting.WindowSize.x,(int)Setting.WindowSize.y);
+		
+		setUndecorated(Setting.WIndwUndecorated);
 		 //设置窗体可见，没有该语句，窗体将不可见，此语句必须有，否则没有界面就没有如何意义了
 		setVisible(true);
-		new Setting();
 		/////////////////////////////////////////////////////////////////////////////////////////////
 		//add System Sington/////////////////////////////////////////////////////////////////////
 		collisionSystem = CollisionSystem.getSystem();
@@ -86,8 +87,6 @@ public class Application extends JFrame{
 	/*
 	 * 初始化游戏调用此方法
 	 */
-	GameObject pic1;
-	GameObject pic2;
 	public void init() {
 		/////////////////////////////////////////////////////////////////////////////////////////////
 		//add addSystemInit///////////////////////////////////////////////////////////////////////
