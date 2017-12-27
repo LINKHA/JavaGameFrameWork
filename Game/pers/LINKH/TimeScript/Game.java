@@ -23,6 +23,7 @@ public class Game extends ScriptSuper{
 	GameObject pic3;
 	GameObject pic4;
 	GameObject pic5;
+	GameObject pic6;
 	List<GameObject> picGameObjects = new ArrayList<GameObject>();
 	int i=0;
 	public void Init() {
@@ -46,6 +47,10 @@ public class Game extends ScriptSuper{
 		pic5 = new GameObject(LoadImage.load("hero.jpg"), new Vector2(800,200), 200, 200);
 		pic5.setTag(Tag.Enemy);
 		pic5.addButton((new Button(pic5)));
+		
+		pic6 = new GameObject(LoadImage.load("hero.jpg"), new Vector2(800,100), 200, 200);
+		pic6.setTag(Tag.Enemy);
+		pic6.addButton((new Button(pic6)));
 		
 
 				/*new Timer().schedule(new TimerTask() {
