@@ -1,10 +1,7 @@
 package pers.LINKH.Game.Compontent;
 
-import java.awt.Image;
 import pers.LINKH.Game.CollisionSystem;
-import pers.LINKH.Game.Helper.Vector2;
 import pers.LINKH.Game.Setting.Tag;
-import pers.LINKH.Game.Tools.Log;
 
 public class Collider  extends Collision {
 	RectHitBox hitBox;
@@ -17,6 +14,7 @@ public class Collider  extends Collision {
 		this.gameObject = gameObject;
 		hitBox = new RectHitBox(gameObject.getPosition(),gameObject.getWidth()
 				,gameObject.getHeight(),true);
+		keyValue = gameObject.keyValue;
 		CollisionSystem.getSystem().addCollider(this);
 	}
 	@Override

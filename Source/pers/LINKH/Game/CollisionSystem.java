@@ -1,13 +1,7 @@
 package pers.LINKH.Game;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Hashtable;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
-
-import pers.LINKH.Game.Compontent.Collider;
 import pers.LINKH.Game.Compontent.Collision;
 import pers.LINKH.Game.Tools.Log;
 
@@ -22,7 +16,7 @@ class ColliderMessage{
 	}
 }
 
-public class CollisionSystem implements FrameSystem {
+public class CollisionSystem extends FrameSystem {
 	
 	private static CollisionSystem instance;
 	private List <ColliderMessage> colliders = new ArrayList<ColliderMessage>();
@@ -110,67 +104,8 @@ public class CollisionSystem implements FrameSystem {
 	}
 
 	@Override
-	public void addSystemInit() {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
 	public void addSystemRunLoop() {
-		// TODO Auto-generated method stub
-		//checkCollisions();
 		performCollistions();
-	}
-	@Override
-	public void addSystemDestruction() {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void addSystemKeyPressed() {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-	@Override
-	public void addSystemKeyReleased() {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-	@Override
-	public void addSystemMousePressed() {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-	@Override
-	public void addSystemMouseReleased() {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-	@Override
-	public void addSystemMouseMoved() {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-	@Override
-	public void addSystemMouseDragged() {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-	@Override
-	public void addSystemMouseClicked() {
-		// TODO Auto-generated method stub
-		
 	}
 }
 	

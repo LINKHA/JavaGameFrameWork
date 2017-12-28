@@ -1,8 +1,6 @@
 package pers.LINKH.Game.Compontent;
 
-import java.awt.Rectangle;
 import pers.LINKH.Game.Helper.Vector2;
-import pers.LINKH.Game.Tools.Log;
 
 public class RectHitBox{
 	private Vector2 objectLocation;

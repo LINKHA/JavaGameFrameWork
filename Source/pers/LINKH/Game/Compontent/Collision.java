@@ -1,9 +1,7 @@
 package pers.LINKH.Game.Compontent;
 
 import pers.LINKH.Game.CollisionSystem;
-import pers.LINKH.Game.Setting.Setting;
 import pers.LINKH.Game.Setting.Tag;
-import pers.LINKH.Game.Tools.Log;
 
 public abstract class Collision extends Compontent {
 	public abstract RectHitBox getHitBox();
@@ -40,11 +38,6 @@ public abstract class Collision extends Compontent {
 	 */
 	public abstract boolean hit(Tag tag) ;
 	
-	
-	Collision(){
-		Setting.ObjectKey--;
-		keyValue = Setting.ObjectKey-1;
-	}
 	@Override
 	public void Destroy() {
 		CollisionSystem.getSystem().deleteCollider(keyValue);

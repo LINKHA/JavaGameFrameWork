@@ -1,6 +1,5 @@
 package pers.LINKH.Game.Compontent.UI;
 
-import pers.LINKH.Game.Compontent.Compontent;
 import pers.LINKH.Game.Helper.Vector2;
 
 public abstract class UICompontent  {
@@ -8,6 +7,7 @@ public abstract class UICompontent  {
 	public Vector2 location;
 	public int width;
 	public int height;
+	public boolean isDown = false;
 	/*
 	 * 鼠标点击控件时调用此方法
 	 * 瞬时方法

@@ -16,34 +16,69 @@ public class GameObject extends Compontent implements PaintcControl{
 	private Vector2 position = new Vector2();
 	private int width;
 	private int height;
-	Image image;
+	Image image = null;
 	Collision collider = null;
 	Button button = null;
+	Sprite sprite = null;
+	/*
+	 * 带Image的构造函数
+	 */
 	public GameObject(Image image,float x,float y,int width,int height,Tag tag ) {
 		this.image = image;
-		position.x = x-width/2.0f;
-		position.y = y-height/2.0f;
+		position.x = x;
+		position.y = y;
 		this.width = width;
 		this.height = height;
 		if(tag==null) {
 			this.tag = Tag.Default;
+		}else {
+			this.tag = tag;
 		}
-		this.tag = tag;
+		keyValue = Setting.ObjectKey++;
 		Screen.addToScreen(this);
-
 	}
+
 	public GameObject(Image image,Vector2 position,int width,int height,Tag tag) {
 		this(image,position.x, position.y,width,height, tag);
 	}
+	
 	public GameObject(Image image,float x,float y,int width,int height) {
 		this(image,x, y,width,height, Tag.Default);
 	}
+	
 	public GameObject(Image image,Vector2 position,int width,int height) {
 		this(image,position.x, position.y,width,height, Tag.Default);
 	}
+	/*
+	 * 不带Image的构造函数
+	 */
+	public GameObject(float x,float y,int width,int height,Tag tag) {
+		position.x = x;
+		position.y = y;
+		this.width = width;
+		this.height = height;
+		if(tag==null) {
+			this.tag = Tag.Default;
+		}else {
+			this.tag = tag;
+		}
+		keyValue = Setting.ObjectKey++;
+		Screen.addToScreen(this);
+	}
+	public GameObject(Vector2 position,int width,int height,Tag tag) {
+		this(position.x, position.y,width,height, tag);
+	}
+	
+	public GameObject(float x,float y,int width,int height) {
+		this(x, y,width,height, Tag.Default);
+	}
+	
+	public GameObject(Vector2 position,int width,int height) {
+		this(position.x, position.y,width,height, Tag.Default);
+	}
 	public void paint(Graphics g) {
 		if(visible) {
-			g.drawImage(image, (int)position.x, (int)position.y, width, height,null);
+			g.drawImage(image, (int)(position.x-width/2.0f), (int)(position.y-height/2.0f), width, height,null);
 		}
 	}
 	public void addCollider(Collision collider) {
@@ -52,6 +87,10 @@ public class GameObject extends Compontent implements PaintcControl{
 	}
 	public void addButton(Button button) {
 		this.button = button;
+	}
+	public void addSprite(Sprite sprite) {
+		this.sprite = sprite;
+		image = sprite.image;
 	}
 	public void move(float deltaX,float deltaY) {
 		position.x+=deltaX;
@@ -65,6 +104,9 @@ public class GameObject extends Compontent implements PaintcControl{
 		if(collider!=null) {
 			collider.tag =tag;
 		}
+	}
+	public void setImage(Image changeImage) {
+		image = changeImage;
 	}
 	public Tag getTag() {
 		return tag;
@@ -83,6 +125,9 @@ public class GameObject extends Compontent implements PaintcControl{
 	}
 	public Collision getCollision() {
 		return collider;
+	}
+	public Image getImage() {
+		return image;
 	}
 	@Override
 	public void Destroy() {

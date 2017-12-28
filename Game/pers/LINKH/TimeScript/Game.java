@@ -9,6 +9,7 @@ import java.util.TimerTask;
 import pers.LINKH.Game.ScriptSuper;
 import pers.LINKH.Game.Compontent.Collider;
 import pers.LINKH.Game.Compontent.GameObject;
+import pers.LINKH.Game.Compontent.Sprite;
 import pers.LINKH.Game.Compontent.UI.Button;
 import pers.LINKH.Game.Helper.KeyCodeIndex;
 import pers.LINKH.Game.Helper.Vector2;
@@ -28,10 +29,16 @@ public class Game extends ScriptSuper{
 	int i=0;
 	public void Init() {
 		
-		pic1 = new GameObject(LoadImage.load("EnemyFly.png"), new Vector2(0,0), 300, 200);
+		/*pic1 = new GameObject(LoadImage.load("EnemyFly.png"), new Vector2(0,0), 300, 200);
+		pic1.addCollider(new Collider(pic1));*/
+		
+		pic1 = new GameObject( new Vector2(0,0), 300, 200);
+		pic1.addSprite(new Sprite("EnemyFly.png",pic1));
 		pic1.addCollider(new Collider(pic1));
 
-		pic2 = new GameObject(LoadImage.load("hero.jpg"), new Vector2(500,500), 200, 200,Tag.Enemy);
+		/*
+		pic2 = new GameObject(new Vector2(500,500), 200, 200,Tag.Enemy);
+		pic2.addSprite(new Sprite("hero.jpg",pic2));
 		pic2.addCollider(new Collider(pic2));
 		
 		
@@ -42,15 +49,13 @@ public class Game extends ScriptSuper{
 		
 		pic4 = new GameObject(LoadImage.load("hero.jpg"), new Vector2(Toolkit.getDefaultToolkit().getScreenSize().width - 100,Toolkit.getDefaultToolkit().getScreenSize().height - 100), 200, 200);
 		pic4.setTag(Tag.Enemy);
-		pic4.addCollider(new Collider(pic4));
+		pic4.addCollider(new Collider(pic4));*/
 		
-		pic5 = new GameObject(LoadImage.load("hero.jpg"), new Vector2(800,200), 200, 200);
+		pic5 = new GameObject(new Vector2(800,200), 200, 200);
+		pic5.addSprite(new Sprite("hero.jpg",pic5));
 		pic5.setTag(Tag.Enemy);
-		pic5.addButton((new Button(pic5)));
-		
-		pic6 = new GameObject(LoadImage.load("hero.jpg"), new Vector2(800,100), 200, 200);
-		pic6.setTag(Tag.Enemy);
-		pic6.addButton((new Button(pic6)));
+		pic5.addButton((new Button(pic5,LoadImage.load("EnemyFly.png"))));
+
 		
 
 				/*new Timer().schedule(new TimerTask() {
@@ -89,12 +94,12 @@ public class Game extends ScriptSuper{
 		if(Input.rightMouseDown()){
 			Log.Print("p");
 		}
-		pic2.move(-1, 0);
-
+		//pic2.move(-1, 0);
+/*
 		if(pic2.getPosition().x<=0) {
 			
 			pic2.Destroy();
-		}
+		}*/
 		if(pic1.getCollision().hit(Tag.Enemy)) {
 			
 			Log.Print("hit");

@@ -1,6 +1,5 @@
 package pers.LINKH.Game.Setting;
 
-import pers.LINKH.Game.ScriptSystem;
 import pers.LINKH.Game.Helper.ScreenSize;
 import pers.LINKH.Game.Helper.Vector2;
 

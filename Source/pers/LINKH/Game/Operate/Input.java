@@ -6,11 +6,8 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
-import pers.LINKH.Game.AppStates;
 import pers.LINKH.Game.Application;
-import pers.LINKH.Game.Helper.KeyCodeIndex;
 import pers.LINKH.Game.Helper.Vector2;
-import pers.LINKH.Game.Tools.Log;
 
 public class Input implements KeyListener, MouseListener,MouseMotionListener{
 	private static boolean[] keys = new boolean[300];

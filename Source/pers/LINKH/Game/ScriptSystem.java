@@ -8,11 +8,12 @@ import java.util.List;
 import pers.LINKH.Game.Setting.Setting;
 import pers.LINKH.Game.Tools.Log;
 
-public class ScriptSystem implements FrameSystem {
+public class ScriptSystem extends FrameSystem {
 	
-	private static String ScriptPackName;
+	
 	private static ScriptSystem instance;
 	
+	private  String ScriptPackName;
 	private  List<Class<?>> classes = new ArrayList<Class<?>>();
 	private  List<ScriptSuper> scripts = new ArrayList<ScriptSuper>();
 	private ScriptSystem() throws Exception {
@@ -103,53 +104,5 @@ public class ScriptSystem implements FrameSystem {
 		for(ScriptSuper s : scripts) {
 			s.Destruction();
 		}
-	}
-	
-	@Override
-	public void addSystemKeyPressed() {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-	@Override
-	public void addSystemKeyReleased() {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-	@Override
-	public void addSystemMousePressed() {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-	@Override
-	public void addSystemMouseReleased() {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-	@Override
-	public void addSystemMouseMoved() {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-	@Override
-	public void addSystemMouseDragged() {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-	@Override
-	public void addSystemMouseClicked() {
-		// TODO Auto-generated method stub
-		
 	}
 }
