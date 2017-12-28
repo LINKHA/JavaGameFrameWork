@@ -93,7 +93,6 @@ public class CollisionSystem extends FrameSystem {
 				return;
 			}
 		}
-		//colliders.remove(keyValue+"");
 	}
 	
 	public static CollisionSystem getSystem() {

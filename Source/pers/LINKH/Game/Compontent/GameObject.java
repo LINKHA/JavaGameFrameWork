@@ -20,6 +20,7 @@ public class GameObject extends Compontent implements PaintcControl{
 	Collision collider = null;
 	Button button = null;
 	Sprite sprite = null;
+	Animator animator = null;
 	/*
 	 * 带Image的构造函数
 	 */
@@ -91,6 +92,9 @@ public class GameObject extends Compontent implements PaintcControl{
 	public void addSprite(Sprite sprite) {
 		this.sprite = sprite;
 		image = sprite.image;
+	}
+	public void addAnimator(Animator animator) {
+		this.animator = animator;
 	}
 	public void move(float deltaX,float deltaY) {
 		position.x+=deltaX;

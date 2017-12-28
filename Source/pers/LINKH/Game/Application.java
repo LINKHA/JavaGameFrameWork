@@ -7,6 +7,7 @@ import pers.LINKH.Game.Helper.KeyCodeIndex;
 import pers.LINKH.Game.Helper.Vector2;
 import pers.LINKH.Game.Operate.Input;
 import pers.LINKH.Game.Setting.Setting;
+import pers.LINKH.Game.Tools.Log;
 
 
 public class Application extends JFrame{
@@ -32,6 +33,7 @@ public class Application extends JFrame{
 	FrameSystem timeSystem;
 	FrameSystem scriptSystem;
 	FrameSystem uiSystem;
+	FrameSystem animationSystem;
 	
 	public Application() throws Exception {
 		_appStates = AppStates.INIT;
@@ -52,6 +54,7 @@ public class Application extends JFrame{
 		timeSystem = TimeSystem.getSystem();
 		scriptSystem = ScriptSystem.getSystem();
 		uiSystem = UISystem.getSystem();
+		animationSystem = AnimationSystem.getSystem();
 		/////////////////////////////////////////////////////////////////////////////////////////////
 
 	}
@@ -67,14 +70,13 @@ public class Application extends JFrame{
 			newTime = System.currentTimeMillis();
 			deltaTime = newTime - oldTime;
 			FPS = (int)(1000.0 / deltaTime);
-			
 			if(bMouseDown == true) {
 				mouseDown();
 			}
 			tickComponent();
 			screen.repaint();
 			try {
-				Thread.sleep(10);
+				Thread.sleep((long)1000.0/Setting.FPS);
 			} catch(Exception e) {
 				System.out.println("Failed to sleep");
 			}
@@ -98,6 +100,7 @@ public class Application extends JFrame{
 	public void tickComponent() {
 		collisionSystem.addSystemRunLoop();
 		scriptSystem.addSystemRunLoop();
+		animationSystem.addSystemRunLoop();
 	}
 	/*
 	 * 游戏结束调用此方法

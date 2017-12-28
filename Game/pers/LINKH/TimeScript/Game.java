@@ -1,5 +1,6 @@
 package pers.LINKH.TimeScript;
 
+import java.awt.Image;
 import java.awt.Toolkit;
 import java.util.ArrayList;
 import java.util.List;
@@ -7,6 +8,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import pers.LINKH.Game.ScriptSuper;
+import pers.LINKH.Game.Compontent.Animator;
 import pers.LINKH.Game.Compontent.Collider;
 import pers.LINKH.Game.Compontent.GameObject;
 import pers.LINKH.Game.Compontent.Sprite;
@@ -25,24 +27,27 @@ public class Game extends ScriptSuper{
 	GameObject pic4;
 	GameObject pic5;
 	GameObject pic6;
-	List<GameObject> picGameObjects = new ArrayList<GameObject>();
+	List<Image> images = new ArrayList<Image>();
 	int i=0;
 	public void Init() {
 		
-		/*pic1 = new GameObject(LoadImage.load("EnemyFly.png"), new Vector2(0,0), 300, 200);
-		pic1.addCollider(new Collider(pic1));*/
 		
 		pic1 = new GameObject( new Vector2(0,0), 300, 200);
 		pic1.addSprite(new Sprite("EnemyFly.png",pic1));
 		pic1.addCollider(new Collider(pic1));
 
-		/*
+		images.add(LoadImage.load("hero.jpg"));
+		images.add(LoadImage.load("EnemyFly.png"));
+		images.add(LoadImage.load("hero.jpg"));
+		
+		
+		
 		pic2 = new GameObject(new Vector2(500,500), 200, 200,Tag.Enemy);
 		pic2.addSprite(new Sprite("hero.jpg",pic2));
-		pic2.addCollider(new Collider(pic2));
+		//pic2.addCollider(new Collider(pic2));
+		pic2.addAnimator(new Animator(images, pic2));
 		
-		
-		
+		/*
 		pic3 = new GameObject(LoadImage.load("hero.jpg"), new Vector2(800,500), 200, 200);
 		pic3.setTag(Tag.Enemy);
 		pic3.addCollider(new Collider(pic3));
