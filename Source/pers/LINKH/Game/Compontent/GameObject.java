@@ -2,6 +2,7 @@ package pers.LINKH.Game.Compontent;
 
 import java.awt.Graphics;
 import java.awt.Image;
+import java.util.List;
 
 import pers.LINKH.Game.PaintcControl;
 import pers.LINKH.Game.Screen;
@@ -9,13 +10,15 @@ import pers.LINKH.Game.Compontent.UI.Button;
 import pers.LINKH.Game.Helper.Vector2;
 import pers.LINKH.Game.Setting.Setting;
 import pers.LINKH.Game.Setting.Tag;
+import pers.LINKH.Game.Tools.LKTween;
 import pers.LINKH.Game.Tools.Log;
 
-public class GameObject extends Compontent implements PaintcControl{
+public class GameObject extends Compontent implements PaintcControl,LKTween{
 	protected boolean visible = true;
 	private Vector2 position = new Vector2();
 	private int width;
 	private int height;
+	Vector2 targetPosition;
 	Image image = null;
 	Collision collider = null;
 	Button button = null;
@@ -96,12 +99,35 @@ public class GameObject extends Compontent implements PaintcControl{
 	public void addAnimator(Animator animator) {
 		this.animator = animator;
 	}
+	@Override
 	public void move(float deltaX,float deltaY) {
 		position.x+=deltaX;
 		position.y+=deltaY;
 		if(collider!=null) {
 			collider.move();
 		}
+	}
+	@Override
+	public void move(Vector2 vec) {
+		move(vec.x,vec.y);
+	}
+	@Override
+	public  void moveTo(Vector2 position,float speed) {
+		targetPosition = position;
+		Vector2 countVec2 = new Vector2(this.position.sub(targetPosition));
+		if(targetPosition != this.position)
+			move(countVec2.direction().x*speed,countVec2.direction().y*speed);
+	}
+	@Override
+	public  void moveAdd(Vector2 distance,float speed) {
+		targetPosition = position.add(distance);
+		Vector2 countVec2 = new Vector2(this.position.sub(targetPosition));
+		if(targetPosition != this.position)
+			move(countVec2.direction().x*speed,countVec2.direction().y*speed);
+	}
+	@Override
+	public  void pathMove(List<Vector2> path,float speed) {
+		
 	}
 	public void setTag(Tag tag) {
 		this.tag = tag;
@@ -141,7 +167,9 @@ public class GameObject extends Compontent implements PaintcControl{
 			if(collider!=null) {
 				collider.Destroy();
 			}
-			Log.Print(keyValue+" Destory");
+			if(animator!=null) {
+				animator.Destroy();
+			}
 		}
 	}
 }

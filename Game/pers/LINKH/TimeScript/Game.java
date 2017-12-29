@@ -38,14 +38,12 @@ public class Game extends ScriptSuper{
 
 		images.add(LoadImage.load("hero.jpg"));
 		images.add(LoadImage.load("EnemyFly.png"));
-		images.add(LoadImage.load("hero.jpg"));
-		
-		
+		images.add(LoadImage.load("BackGround.jpg"));
 		
 		pic2 = new GameObject(new Vector2(500,500), 200, 200,Tag.Enemy);
 		pic2.addSprite(new Sprite("hero.jpg",pic2));
 		//pic2.addCollider(new Collider(pic2));
-		pic2.addAnimator(new Animator(images, pic2));
+		pic2.addAnimator(new Animator(images,10, pic2));
 		
 		/*
 		pic3 = new GameObject(LoadImage.load("hero.jpg"), new Vector2(800,500), 200, 200);
@@ -99,12 +97,13 @@ public class Game extends ScriptSuper{
 		if(Input.rightMouseDown()){
 			Log.Print("p");
 		}
-		//pic2.move(-1, 0);
-/*
+		
+		pic2.moveTo(new Vector2(500,700),1);
+
 		if(pic2.getPosition().x<=0) {
 			
 			pic2.Destroy();
-		}*/
+		}
 		if(pic1.getCollision().hit(Tag.Enemy)) {
 			
 			Log.Print("hit");
