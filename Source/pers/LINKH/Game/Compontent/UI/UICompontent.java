@@ -1,9 +1,9 @@
 package pers.LINKH.Game.Compontent.UI;
 
+import pers.LINKH.Game.Compontent.Compontent;
 import pers.LINKH.Game.Helper.Vector2;
 
-public abstract class UICompontent  {
-	public int keyValue;
+public abstract class UICompontent extends Compontent {
 	public Vector2 location;
 	public int width;
 	public int height;

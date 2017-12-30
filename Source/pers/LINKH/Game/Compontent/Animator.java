@@ -4,8 +4,6 @@ import java.awt.Image;
 import java.util.List;
 
 import pers.LINKH.Game.AnimationSystem;
-import pers.LINKH.Game.CollisionSystem;
-import pers.LINKH.Game.Tools.Log;
 
 public class Animator extends Compontent {
 	public boolean loop = true;

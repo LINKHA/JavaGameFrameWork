@@ -2,7 +2,6 @@ package pers.LINKH.Game.Compontent;
 
 import java.awt.Graphics;
 import java.awt.Image;
-import java.util.List;
 
 import pers.LINKH.Game.PaintcControl;
 import pers.LINKH.Game.Screen;
@@ -11,8 +10,6 @@ import pers.LINKH.Game.Helper.Vector2;
 import pers.LINKH.Game.Setting.Setting;
 import pers.LINKH.Game.Setting.Tag;
 import pers.LINKH.Game.Tools.LKTween;
-import pers.LINKH.Game.Tools.Log;
-
 public class GameObject extends Compontent implements PaintcControl,LKTween{
 	protected boolean visible = true;
 	private Vector2 position = new Vector2();
@@ -156,6 +153,15 @@ public class GameObject extends Compontent implements PaintcControl,LKTween{
 	public Image getImage() {
 		return image;
 	}
+	public Button getButton() {
+		return button;
+	}
+	public Animator getAnimator() {
+		return animator;
+	}
+	public Sprite getSprite() {
+		return sprite;
+	}
 	@Override
 	public void Destroy() {
 		if(visible) {
@@ -166,6 +172,9 @@ public class GameObject extends Compontent implements PaintcControl,LKTween{
 			}
 			if(animator!=null) {
 				animator.Destroy();
+			}
+			if(button!=null) {
+				button.Destroy();
 			}
 		}
 	}

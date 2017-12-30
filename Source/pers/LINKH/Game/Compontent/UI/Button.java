@@ -3,9 +3,10 @@ package pers.LINKH.Game.Compontent.UI;
 import java.awt.Image;
 import pers.LINKH.Game.UISystem;
 import pers.LINKH.Game.Compontent.GameObject;
+import pers.LINKH.Game.Tools.Log;
 
 public class Button extends UICompontent {
-
+	boolean mouseUp = false;
 	boolean mouseDown = false;
 	Image image;
 	Image changeImage;
@@ -28,17 +29,31 @@ public class Button extends UICompontent {
 	public void mouseBegain() {
 		mouseDown = true;
 		gameObject.setImage(changeImage);
-
+		
 	}
 	@Override
 	public void mouseOn() {
+		Log.Print("a");
 	}
 	@Override
 	public void mouseRelease() {
 		mouseDown = false;
+		mouseUp = true;
 		gameObject.setImage(image);
 	}
 	public boolean mouseDown() {
 		return mouseDown;
+	}
+	public boolean mouseUp() {
+		if(mouseUp == true) {
+			mouseUp = false;
+			return true;
+		}
+		return false;
+	}
+	@Override
+	public void Destroy() {
+		// TODO Auto-generated method stub
+		UISystem.getSystem().deleteButton(keyValue);
 	}
 }
