@@ -65,6 +65,9 @@ public class ScriptSystem extends FrameSystem {
 	    }
 	    return sb.toString();
 	}
+	public  List<ScriptSuper>getScripts() {
+		return scripts;
+	}
 
 
 	public static ScriptSystem getSystem() throws Exception {
@@ -86,7 +89,8 @@ public class ScriptSystem extends FrameSystem {
 	public void addSystemInit() {
 		// TODO Auto-generated method stub
 		for(ScriptSuper s : scripts) {
-			s.Init();
+			if(s.enable)
+				s.Init();
 		}
 	}
 
@@ -94,7 +98,8 @@ public class ScriptSystem extends FrameSystem {
 	public void addSystemRunLoop() {
 		// TODO Auto-generated method stub
 		for(ScriptSuper s : scripts) {
-			s.RunLoop();
+			if(s.enable)
+				s.RunLoop();
 		}
 	}
 
@@ -102,7 +107,8 @@ public class ScriptSystem extends FrameSystem {
 	public void addSystemDestruction() {
 		// TODO Auto-generated method stub
 		for(ScriptSuper s : scripts) {
-			s.Destruction();
+			if(s.enable)
+				s.Destruction();
 		}
 	}
 }

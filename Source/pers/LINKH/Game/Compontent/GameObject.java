@@ -7,6 +7,7 @@ import pers.LINKH.Game.PaintcControl;
 import pers.LINKH.Game.Screen;
 import pers.LINKH.Game.Compontent.UI.Button;
 import pers.LINKH.Game.Helper.Vector2;
+import pers.LINKH.Game.Setting.Layout;
 import pers.LINKH.Game.Setting.Setting;
 import pers.LINKH.Game.Setting.Tag;
 import pers.LINKH.Game.Tools.LKTween;
@@ -24,58 +25,57 @@ public class GameObject extends Compontent implements PaintcControl,LKTween{
 	/*
 	 * 带Image的构造函数
 	 */
-	public GameObject(Image image,float x,float y,int width,int height,Tag tag ) {
+	public GameObject(Image image,float x,float y,int width,int height,Tag tag ,Layout layout) {
 		this.image = image;
 		position.x = x;
 		position.y = y;
 		this.width = width;
 		this.height = height;
-		if(tag==null) {
-			this.tag = Tag.Default;
-		}else {
-			this.tag = tag;
-		}
+		this.tag = tag;
+		this.layout = layout;
 		keyValue = Setting.ObjectKey++;
 		Screen.addToScreen(this);
 	}
 
-	public GameObject(Image image,Vector2 position,int width,int height,Tag tag) {
-		this(image,position.x, position.y,width,height, tag);
+	public GameObject(Image image,Vector2 position,int width,int height,Tag tag,Layout layout) {
+		this(image,position.x, position.y,width,height, tag,layout);
+	}
+	public GameObject(Image image,Vector2 position,int width,int height,Layout layout) {
+		this(image,position.x, position.y,width,height, Tag.Default,layout);
 	}
 	
 	public GameObject(Image image,float x,float y,int width,int height) {
-		this(image,x, y,width,height, Tag.Default);
+		this(image,x, y,width,height, Tag.Default,Layout.Default);
 	}
 	
 	public GameObject(Image image,Vector2 position,int width,int height) {
-		this(image,position.x, position.y,width,height, Tag.Default);
+		this(image,position.x, position.y,width,height, Tag.Default,Layout.Default);
 	}
 	/*
 	 * 不带Image的构造函数
 	 */
-	public GameObject(float x,float y,int width,int height,Tag tag) {
+	public GameObject(float x,float y,int width,int height,Tag tag ,Layout layout) {
 		position.x = x;
 		position.y = y;
 		this.width = width;
 		this.height = height;
-		if(tag==null) {
-			this.tag = Tag.Default;
-		}else {
-			this.tag = tag;
-		}
+		this.tag = tag;
+		this.layout = layout;
 		keyValue = Setting.ObjectKey++;
 		Screen.addToScreen(this);
 	}
-	public GameObject(Vector2 position,int width,int height,Tag tag) {
-		this(position.x, position.y,width,height, tag);
+	public GameObject(Vector2 position,int width,int height,Tag tag,Layout layout) {
+		this(position.x, position.y,width,height, tag,layout);
 	}
-	
+	public GameObject(Vector2 position,int width,int height,Layout layout) {
+		this(position.x, position.y,width,height, Tag.Default,layout);
+	}
 	public GameObject(float x,float y,int width,int height) {
-		this(x, y,width,height, Tag.Default);
+		this(x, y,width,height, Tag.Default,Layout.Default);
 	}
 	
 	public GameObject(Vector2 position,int width,int height) {
-		this(position.x, position.y,width,height, Tag.Default);
+		this(position.x, position.y,width,height, Tag.Default,Layout.Default);
 	}
 	public void paint(Graphics g) {
 		if(visible) {
@@ -131,6 +131,9 @@ public class GameObject extends Compontent implements PaintcControl,LKTween{
 	}
 	public void setImage(Image changeImage) {
 		image = changeImage;
+	}
+	public Layout getLayout() {
+		return layout;
 	}
 	public Tag getTag() {
 		return tag;

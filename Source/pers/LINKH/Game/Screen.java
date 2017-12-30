@@ -2,11 +2,18 @@ package pers.LINKH.Game;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import javax.swing.JPanel;
 import pers.LINKH.Game.Compontent.Compontent;
+import pers.LINKH.Game.Compontent.GameObject;
+import pers.LINKH.Game.Setting.Layout;
+import pers.LINKH.Game.Tools.Log;
+
+
 
 public class Screen extends JPanel {
 	
@@ -19,8 +26,8 @@ public class Screen extends JPanel {
 	
 	Application baseClass;
 	private boolean fpsCounter = false;
-	static Map<Integer, Compontent> controls = new Hashtable<Integer, Compontent>() ;
 	
+	static List<GameObject> gameObjects = new ArrayList<GameObject>();
 	
 	
 	
@@ -34,24 +41,41 @@ public class Screen extends JPanel {
 		super.paintComponent(g);
 
 		
-		Iterator iter =controls.entrySet().iterator();
-		
-		while(iter.hasNext()) {
-			  Map.Entry entry = (Map.Entry) iter.next();
-			 ((PaintcControl) entry.getValue()).paint(g);
-		}
-		
-		
+		for(int i=0;i<gameObjects.size();i++) {
+			gameObjects.get(i).paint(g);
+		}		
 		if(fpsCounter) {
 			g.setColor(Color.black);
 			g.drawString(baseClass.FPS + "", 20, 20);
 		}
 
 	}
-	public static void addToScreen(Compontent gameObj) {
-		controls.put(gameObj.keyValue,gameObj);
+	public static void addToScreen(GameObject gameObj) {
+
+		if(gameObjects.size()==0) {
+			gameObjects.add(gameObj);
+			return;
+		}
+
+		
+		int i=0;
+		for(GameObject object : gameObjects) {
+			
+			if(object.layout.getValue()>=gameObj.layout.getValue()) {
+				gameObjects.add(i, gameObj);
+				return;
+			}
+			i++;
+		}
+		
+		gameObjects.add(gameObj);
 	}
 	public static void deleteToScreen(int keyValue) {
-		controls.remove(keyValue);
+		for(Compontent compontent : gameObjects) {
+			if(keyValue==compontent.keyValue) {
+				gameObjects.remove(compontent);
+				return;
+			}
+		}
 	}
 }

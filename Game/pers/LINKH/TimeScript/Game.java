@@ -13,15 +13,18 @@ import pers.LINKH.Game.Tools.Log;
 
 
 public class Game extends ScriptSuper{
-
+	public Game(){
+		super.enable = false;
+		Scriptname = "Game";
+	}
 	static GameObject BackGround;
 	
 	public void Init() {
-
+		Log.Print("b");
 	}
 	public void RunLoop() {
 
-
+		Log.Print("a");
 	}
 	public void Destruction() {
 		// TODO Auto-generated method stub
