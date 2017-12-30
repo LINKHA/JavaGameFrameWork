@@ -45,11 +45,13 @@ public class Game extends ScriptSuper{
 		//pic2.addCollider(new Collider(pic2));
 		pic2.addAnimator(new Animator(images,10, pic2));
 		
-		/*
-		pic3 = new GameObject(LoadImage.load("hero.jpg"), new Vector2(800,500), 200, 200);
-		pic3.setTag(Tag.Enemy);
-		pic3.addCollider(new Collider(pic3));
 		
+		pic3 = new GameObject( new Vector2(800,500), 200, 200,Tag.Enemy);
+		pic3.addSprite(new Sprite("hero.jpg",pic3));
+		pic3.addCollider(new Collider(pic3));
+		pic3.addAnimator(new Animator(images,10, pic3));
+		
+		/*
 		pic4 = new GameObject(LoadImage.load("hero.jpg"), new Vector2(Toolkit.getDefaultToolkit().getScreenSize().width - 100,Toolkit.getDefaultToolkit().getScreenSize().height - 100), 200, 200);
 		pic4.setTag(Tag.Enemy);
 		pic4.addCollider(new Collider(pic4));*/
@@ -81,6 +83,7 @@ public class Game extends ScriptSuper{
 					gameObject.Destroy();
 				}
 			}*/
+		
 		// TODO Auto-generated method stub
 		if(Input.getButtonDown(KeyCodeIndex.A)) {
 			pic1.move(-3.0f, 0);
@@ -99,6 +102,7 @@ public class Game extends ScriptSuper{
 		}
 		
 		pic2.moveTo(new Vector2(500,700),1);
+		//pic2.move(-3.0f,0);
 
 		if(pic2.getPosition().x<=0) {
 			

@@ -6,6 +6,7 @@ import pers.LINKH.Game.Compontent.GameObject;
 
 public class Button extends UICompontent {
 
+	boolean mouseDown = false;
 	Image image;
 	Image changeImage;
 	GameObject gameObject;
@@ -25,13 +26,19 @@ public class Button extends UICompontent {
 
 	@Override
 	public void mouseBegain() {
+		mouseDown = true;
 		gameObject.setImage(changeImage);
+
 	}
 	@Override
 	public void mouseOn() {
 	}
 	@Override
 	public void mouseRelease() {
+		mouseDown = false;
 		gameObject.setImage(image);
+	}
+	public boolean mouseDown() {
+		return mouseDown;
 	}
 }

@@ -112,22 +112,19 @@ public class GameObject extends Compontent implements PaintcControl,LKTween{
 		move(vec.x,vec.y);
 	}
 	@Override
-	public  void moveTo(Vector2 position,float speed) {
+	public  boolean moveTo(Vector2 position,float speed) {
 		targetPosition = position;
-		Vector2 countVec2 = new Vector2(this.position.sub(targetPosition));
-		if(targetPosition != this.position)
+		Vector2 countVec2 = new Vector2(targetPosition.sub(this.position));
+		if(!countVec2.equals(Vector2.zero())) {
 			move(countVec2.direction().x*speed,countVec2.direction().y*speed);
+			return false;
+		}
+		return true;
 	}
 	@Override
-	public  void moveAdd(Vector2 distance,float speed) {
+	public  boolean moveAdd(Vector2 distance,float speed) {
 		targetPosition = position.add(distance);
-		Vector2 countVec2 = new Vector2(this.position.sub(targetPosition));
-		if(targetPosition != this.position)
-			move(countVec2.direction().x*speed,countVec2.direction().y*speed);
-	}
-	@Override
-	public  void pathMove(List<Vector2> path,float speed) {
-		
+		return moveTo(targetPosition, speed);
 	}
 	public void setTag(Tag tag) {
 		this.tag = tag;
