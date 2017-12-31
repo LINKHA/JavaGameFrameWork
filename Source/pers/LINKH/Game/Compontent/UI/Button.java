@@ -6,6 +6,7 @@ import pers.LINKH.Game.Compontent.GameObject;
 import pers.LINKH.Game.Tools.Log;
 
 public class Button extends UICompontent {
+	boolean mouseHit = false;
 	boolean mouseUp = false;
 	boolean mouseDown = false;
 	Image image;
@@ -28,18 +29,24 @@ public class Button extends UICompontent {
 	@Override
 	public void mouseBegain() {
 		mouseDown = true;
+		mouseHit = true;
 		gameObject.setImage(changeImage);
-		
 	}
 	@Override
 	public void mouseOn() {
-		Log.Print("a");
 	}
 	@Override
 	public void mouseRelease() {
 		mouseDown = false;
 		mouseUp = true;
 		gameObject.setImage(image);
+	}
+	public boolean mouseHit() {
+		if(mouseHit == true) {
+			mouseHit = false;
+			return true;
+		}
+		return false;
 	}
 	public boolean mouseDown() {
 		return mouseDown;

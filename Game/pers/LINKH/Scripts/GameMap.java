@@ -8,7 +8,7 @@ import pers.LINKH.Game.Compontent.Sprite;
 import pers.LINKH.Game.Helper.Vector2;
 
 public class GameMap {
-	public List<GameObject> PlantArea = new ArrayList<GameObject>();
+	public static List<MapStruct> PlantArea = new ArrayList<MapStruct>();
 	public GameMap(){
 		for(int i=0;i<5;i++) {
 			for(int n=0;n<9;n++) {
@@ -17,9 +17,8 @@ public class GameMap {
 		}
 		for(Vector2 vec2:GameWorldSetting.mapPoint) {
 			GameObject a = new GameObject(vec2,190,180);
-			PlantArea.add(a);
-			//a.addSprite(new Sprite("Assets/Sun/Sun002.png",  a));
-			a.addSprite(new Sprite("Assets/Square.png",  a));
+			PlantArea.add(new MapStruct(a,false));
+			//a.addSprite(new Sprite("Assets/Square.png",  a));
 		}
 	}
 }

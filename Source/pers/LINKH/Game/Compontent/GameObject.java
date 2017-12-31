@@ -11,6 +11,7 @@ import pers.LINKH.Game.Setting.Layout;
 import pers.LINKH.Game.Setting.Setting;
 import pers.LINKH.Game.Setting.Tag;
 import pers.LINKH.Game.Tools.LKTween;
+import pers.LINKH.Game.Tools.Log;
 public class GameObject extends Compontent implements PaintcControl,LKTween{
 	protected boolean visible = true;
 	private Vector2 position = new Vector2();
@@ -122,6 +123,13 @@ public class GameObject extends Compontent implements PaintcControl,LKTween{
 	public  boolean moveAdd(Vector2 distance,float speed) {
 		targetPosition = position.add(distance);
 		return moveTo(targetPosition, speed);
+	}
+	public void setPosition(Vector2 position) {
+		this.position = position;
+	}
+	public void setPosition(float x,float y) {
+		this.position.x = x;
+		this.position.y = y;
 	}
 	public void setTag(Tag tag) {
 		this.tag = tag;

@@ -17,6 +17,8 @@ public class Input implements KeyListener, MouseListener,MouseMotionListener{
 	static boolean leftMouseDown = false;
 	static boolean rightMouseDown = false;
 	
+	private static boolean hitMouse = false;
+	private static boolean releasedMouse = false;
 	public Input(Application baseClass) {
 		this.baseClass = baseClass;
 	}
@@ -37,6 +39,7 @@ public class Input implements KeyListener, MouseListener,MouseMotionListener{
 	}
 	@Override
 	public void mousePressed(MouseEvent e) {
+		hitMouse = true;
 		if(e.isMetaDown()) {
 			rightMouseDown = true;
 			baseClass.MousePressed(1);
@@ -48,6 +51,7 @@ public class Input implements KeyListener, MouseListener,MouseMotionListener{
 	}
 	@Override
 	public void mouseReleased(MouseEvent e) {
+		releasedMouse = true;
 		if(e.isMetaDown()) {
 			rightMouseDown = false;
 			baseClass.MouseReleased(1);
@@ -95,16 +99,26 @@ public class Input implements KeyListener, MouseListener,MouseMotionListener{
 		return false;
 	}
 	public static boolean leftMouseDown() {
-		if(leftMouseDown) 
-			return true;
-		return false;
+		return leftMouseDown;
 	}
 	public static boolean rightMouseDown() {
-		if(rightMouseDown) 
-			return true;
-		return false;
+		return rightMouseDown;
 	}
 	public static Vector2 getMouseLocation() {
 		return MouseLocation;
+	}
+	public static boolean hitMouse() {
+		if(hitMouse) {
+			hitMouse = false;
+			return true;
+		}
+		return false;
+	}
+	public static boolean releasedMouse() {
+		if(releasedMouse) {
+			releasedMouse = false;
+			return true;
+		}
+		return false;
 	}
 }
