@@ -7,6 +7,7 @@ import pers.LINKH.Game.Compontent.UI.Button;
 import pers.LINKH.Game.Helper.ScreenSize;
 import pers.LINKH.Game.Helper.Vector2;
 import pers.LINKH.Game.Setting.Layout;
+import pers.LINKH.Game.Tools.LoadAnimation;
 import pers.LINKH.Game.Tools.LoadImage;
 import pers.LINKH.Game.Tools.Log;
 
@@ -23,6 +24,7 @@ public class Menu extends ScriptSuper {
 		
 		MainMenuGround = new GameObject( new Vector2(ScreenSize.WIDTH/2,ScreenSize.HEIGHT/2), ScreenSize.WIDTH, ScreenSize.HEIGHT,Layout.BackGround);
 		MainMenuGround.addSprite(new Sprite("Assets/MainMenu.png",MainMenuGround));
+
 	}
 
 	@Override
@@ -30,14 +32,7 @@ public class Menu extends ScriptSuper {
 		if(buttonLaunch.getButton().mouseUp()) {
 			buttonLaunch.Destroy();
 			MainMenuGround.Destroy();
-			try {
-				ScriptOn("Game");
-			}catch (Exception e) {
-				
-			}
-			Game.BackGround =new GameObject( new Vector2(ScreenSize.WIDTH/2,ScreenSize.HEIGHT/2), ScreenSize.WIDTH, ScreenSize.HEIGHT,Layout.BackGround);
-			Game.BackGround.addSprite(new Sprite("Assets/BackGround.png",MainMenuGround));
-			
+			ScriptOn("Game");
 		}
 	}
 

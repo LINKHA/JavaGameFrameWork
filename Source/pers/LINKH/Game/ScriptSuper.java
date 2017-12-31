@@ -41,10 +41,14 @@ public abstract class ScriptSuper {
 		return null;
 	}
 	public void ScriptOn(String name) {
-		ScriptSuper script = getScriptForName(name);
-		if(!script.enable) {
-			getScriptForName(name).enable = true;
-			getScriptForName(name).Init();
+		try {
+			ScriptSuper script = getScriptForName(name);
+			if(!script.enable) {
+				getScriptForName(name).enable = true;
+				getScriptForName(name).Init();
+			}
+		}catch (Exception e) {
+			Log.Print("File to On script");
 		}
 	}
 }
