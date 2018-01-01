@@ -39,5 +39,8 @@ public class TimeSystem extends FrameSystem{
 		// TODO Auto-generated method stub
 		stopWatch();
 	}
+	public double getCurrent() {
+		return currentTime;
+	}
 }
 
