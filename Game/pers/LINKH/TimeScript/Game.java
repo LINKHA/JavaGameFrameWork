@@ -44,6 +44,7 @@ public class Game extends ScriptSuper{
 	public void Init() {
 		
 		
+<<<<<<< HEAD
 		
 		BackGround =new GameObject( new Vector2(ScreenSize.WIDTH/2,ScreenSize.HEIGHT/2), ScreenSize.WIDTH, ScreenSize.HEIGHT,Layout.BackGround);
 		BackGround.addSprite(new Sprite("Assets/BackGround.png",BackGround));
@@ -54,6 +55,33 @@ public class Game extends ScriptSuper{
 		sun.addSprite(new Sprite("Assets/Sun/Sun001.png", sun));
 		sun.addAnimator(new Animator( LoadAnimation.load("Assets/Sun/Sun0",".png", 1, 22),4, sun));
 		
+=======
+		pic1 = new GameObject( new Vector2(0,0), 300, 200);
+		pic1.addSprite(new Sprite("EnemyFly.png",pic1));
+		pic1.addCollider(new Collider(pic1));
+
+		images.add(LoadImage.load("hero.jpg"));
+		images.add(LoadImage.load("EnemyFly.png"));
+		images.add(LoadImage.load("BackGround.jpg"));
+		
+		pic2 = new GameObject(new Vector2(500,500), 200, 200,Tag.Enemy);
+		pic2.addSprite(new Sprite("hero.jpg",pic2));
+		//pic2.addCollider(new Collider(pic2));
+		pic2.addAnimator(new Animator(images,10, pic2));
+		
+		/*
+		pic3 = new GameObject(LoadImage.load("hero.jpg"), new Vector2(800,500), 200, 200);
+		pic3.setTag(Tag.Enemy);
+		pic3.addCollider(new Collider(pic3));
+		
+		pic4 = new GameObject(LoadImage.load("hero.jpg"), new Vector2(Toolkit.getDefaultToolkit().getScreenSize().width - 100,Toolkit.getDefaultToolkit().getScreenSize().height - 100), 200, 200);
+		pic4.setTag(Tag.Enemy);
+		pic4.addCollider(new Collider(pic4));*/
+		
+		pic5 = new GameObject(new Vector2(800,200), 200, 200);
+		pic5.addSprite(new Sprite("hero.jpg",pic5));
+		pic5.setTag(Tag.Enemy);
+		pic5.addButton((new Button(pic5,LoadImage.load("EnemyFly.png"))));
 
 		
 
@@ -125,6 +153,7 @@ public class Game extends ScriptSuper{
 						map.isOn = true;
 					}
 				}
+<<<<<<< HEAD
 				Card.PeashooterOn=false;
 			}
 			if(Card.SunFlowerOn==true) {
@@ -163,6 +192,12 @@ public class Game extends ScriptSuper{
 			Card.peashooterMove = new GameObject(new Vector2(-1000,-1000 ), 130, 130);
 			Card.peashooterMove.addSprite(new Sprite("Assets/Peashooter/Peashooter001.png", Card.peashooterMove));
 			Card.PeashooterOn = true;
+=======
+			}*/
+		// TODO Auto-generated method stub
+		if(Input.getButtonDown(KeyCodeIndex.A)) {
+			pic1.move(-3.0f, 0);
+>>>>>>> parent of 49d26bd... 引擎基本功能完成
 		}
 		if(Card.PeashooterCard.getButton().mouseDown()) {
 			Card.peashooterMove.setPosition(Input.getMouseLocation());
@@ -178,11 +213,19 @@ public class Game extends ScriptSuper{
 			Card.SunFlowerMove.setPosition(Input.getMouseLocation());
 		}
 		
+<<<<<<< HEAD
 		
 		if(Card.WallNutCard.getButton().mouseHit()) {
 			Card.WallNutMove = new GameObject(new Vector2(-1000,-1000 ), 130, 130);
 			Card.WallNutMove.addSprite(new Sprite("Assets/WallNut/WallNut001.png", Card.WallNutMove));
 			Card.WallNutOn = true;
+=======
+		pic2.moveTo(new Vector2(500,700),1);
+
+		if(pic2.getPosition().x<=0) {
+			
+			pic2.Destroy();
+>>>>>>> parent of 49d26bd... 引擎基本功能完成
 		}
 		if(Card.WallNutCard.getButton().mouseDown()) {
 			Card.WallNutMove.setPosition(Input.getMouseLocation());

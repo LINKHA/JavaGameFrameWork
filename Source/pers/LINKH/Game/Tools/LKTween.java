@@ -8,6 +8,6 @@ import pers.LINKH.Game.Helper.Vector2;
 public interface LKTween {
 	 void move(float deltaX,float deltaY) ;
 	 void move(Vector2 vec) ;
-	 boolean moveTo(Vector2 position,float speed) ;
-	 boolean moveAdd(Vector2 distance,float speed) ;
+	 void moveTo(Vector2 position,float speed) ;
+	 void moveAdd(Vector2 distance,float speed) ;
 }

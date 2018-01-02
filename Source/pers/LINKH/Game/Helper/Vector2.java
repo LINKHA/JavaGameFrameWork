@@ -17,16 +17,14 @@ public class Vector2 {
 		this.y = vec2.y;
 	}
 	public Vector2 add(Vector2 vec2) {
-		Vector2 vec = new Vector2();
-		vec.x =this.x+vec2.x;
-		vec.y =this.y+vec2.y;
-		return vec;
+		this.x+=vec2.x;
+		this.y+=vec2.y;
+		return this;
 	}
 	public Vector2 sub(Vector2 vec2) {
-		Vector2 vec = new Vector2();
-		vec.x =this.x-vec2.x;
-		vec.y =this.y-vec2.y;
-		return vec;
+		this.x-=vec2.x;
+		this.y-=vec2.y;
+		return this;
 	}
 	/*
 	 * 返回其单位向量
@@ -34,11 +32,6 @@ public class Vector2 {
 	public Vector2 direction() {
 		double num =Math.sqrt(x*x+y*y);
 		return new Vector2((float)(x/num),(float)(y/num)); 
-	}
-	public boolean equals(Vector2 vec2) {
-		if(vec2.x==this.x && vec2.y==this.y)
-			return true;
-		return false;
 	}
 	public static Vector2 zero() {
 		return new Vector2();

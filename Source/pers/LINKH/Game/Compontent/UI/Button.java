@@ -6,9 +6,13 @@ import pers.LINKH.Game.Compontent.GameObject;
 import pers.LINKH.Game.Tools.Log;
 
 public class Button extends UICompontent {
+<<<<<<< HEAD
 	boolean mouseHit = false;
 	boolean mouseUp = false;
 	boolean mouseDown = false;
+=======
+
+>>>>>>> parent of 49d26bd... 引擎基本功能完成
 	Image image;
 	Image changeImage;
 	GameObject gameObject;
@@ -28,8 +32,11 @@ public class Button extends UICompontent {
 
 	@Override
 	public void mouseBegain() {
+<<<<<<< HEAD
 		mouseDown = true;
 		mouseHit = true;
+=======
+>>>>>>> parent of 49d26bd... 引擎基本功能完成
 		gameObject.setImage(changeImage);
 	}
 	@Override
@@ -37,6 +44,7 @@ public class Button extends UICompontent {
 	}
 	@Override
 	public void mouseRelease() {
+<<<<<<< HEAD
 		mouseDown = false;
 		mouseUp = true;
 		gameObject.setImage(image);
@@ -63,4 +71,8 @@ public class Button extends UICompontent {
 		// TODO Auto-generated method stub
 		UISystem.getSystem().deleteButton(keyValue);
 	}
+=======
+		gameObject.setImage(image);
+	}
+>>>>>>> parent of 49d26bd... 引擎基本功能完成
 }

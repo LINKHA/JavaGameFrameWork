@@ -2,6 +2,7 @@ package pers.LINKH.Game.Compontent;
 
 import java.awt.Graphics;
 import java.awt.Image;
+import java.util.List;
 
 import pers.LINKH.Game.PaintcControl;
 import pers.LINKH.Game.Screen;
@@ -110,19 +111,22 @@ public class GameObject extends Compontent implements PaintcControl,LKTween{
 		move(vec.x,vec.y);
 	}
 	@Override
-	public  boolean moveTo(Vector2 position,float speed) {
+	public  void moveTo(Vector2 position,float speed) {
 		targetPosition = position;
-		Vector2 countVec2 = new Vector2(targetPosition.sub(this.position));
-		if(!countVec2.equals(Vector2.zero())) {
+		Vector2 countVec2 = new Vector2(this.position.sub(targetPosition));
+		if(targetPosition != this.position)
 			move(countVec2.direction().x*speed,countVec2.direction().y*speed);
-			return false;
-		}
-		return true;
 	}
 	@Override
-	public  boolean moveAdd(Vector2 distance,float speed) {
+	public  void moveAdd(Vector2 distance,float speed) {
 		targetPosition = position.add(distance);
-		return moveTo(targetPosition, speed);
+		Vector2 countVec2 = new Vector2(this.position.sub(targetPosition));
+		if(targetPosition != this.position)
+			move(countVec2.direction().x*speed,countVec2.direction().y*speed);
+	}
+	@Override
+	public  void pathMove(List<Vector2> path,float speed) {
+		
 	}
 	public void setPosition(Vector2 position) {
 		this.position = position;
@@ -189,4 +193,5 @@ public class GameObject extends Compontent implements PaintcControl,LKTween{
 			}
 		}
 	}
+
 }

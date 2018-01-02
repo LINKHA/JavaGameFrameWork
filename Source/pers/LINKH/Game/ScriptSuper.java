@@ -4,12 +4,14 @@ import java.util.List;
 
 import pers.LINKH.Game.Tools.Log;
 
+
 public abstract class ScriptSuper {
 	public String Scriptname;
 	public boolean enable = true;
 	public abstract void Init() ;
 	public abstract void RunLoop();
 	public abstract void Destruction() ;
+
 	public void print(Object object) {
 		Log.Print(object);
 	}
