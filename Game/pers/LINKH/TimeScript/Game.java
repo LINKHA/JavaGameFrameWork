@@ -78,14 +78,18 @@ public class Game extends ScriptSuper{
 						gameObject.addAnimator(new Animator(LoadAnimation.load("Assets/Zombie/Zombie0",".png", 1, 22),7,  gameObject));
 						Zombie zombie = new Zombie();
 						zombie.gameObject = gameObject;
+						zombie.keyValue = gameObject.keyValue;
 						ZombieManager.Zombies.add(zombie);
 						
 						break;
 					case 1:
 						gameObject.addSprite(new Sprite("Assets/Zombie2/Zombie2001.png",gameObject));
 						gameObject.addAnimator(new Animator(LoadAnimation.load("Assets/Zombie2/Zombie20",".png", 1, 31),10,  gameObject));
+						gameObject.addCollider(new Collider(gameObject));
+						
 						Zombie zombie2 = new Zombie();
 						zombie2.gameObject = gameObject;
+						zombie2.keyValue = gameObject.keyValue;
 						ZombieManager.Zombies.add(zombie2);
 						
 						break;
@@ -94,6 +98,7 @@ public class Game extends ScriptSuper{
 						gameObject.addAnimator(new Animator(LoadAnimation.load("Assets/Zombie3/Zombie30",".png", 1, 18),8,  gameObject));
 						Zombie zombie3 = new Zombie();
 						zombie3.gameObject = gameObject;
+						zombie3.keyValue = gameObject.keyValue;
 						ZombieManager.Zombies.add(zombie3);
 						
 						break;
