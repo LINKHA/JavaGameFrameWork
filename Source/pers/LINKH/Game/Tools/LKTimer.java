@@ -8,10 +8,8 @@ public class LKTimer {
 	double interval;
 	double delay;
 	double stopTime;
-	
-	double tempTime = 0;
 	public LKTimer(double interval,double delay,double stopTime) {
-		startTime = LKTimer.getTime();
+		startTime = 0;
 		this.interval = interval;
 		this.delay = delay;
 		this.stopTime = stopTime;
@@ -24,25 +22,18 @@ public class LKTimer {
 	}
 	public boolean timer() {
 		
-		if(getTime()-startTime>=stopTime) {
+		if(getTime()>=stopTime) {
 			enable = false;
 		}
 		if(delay!=0) {
-			tempTime = tempTime+getTime()-startTime;
-			if(tempTime>=delay) {
+			if(getTime()>=delay) {
 				delay=0;
-				tempTime=0;
-				startTime+=tempTime;
+				startTime=getTime();
 			}
 		}
-		
 		else if(enable) {
-			Log.Print(delay);
-			
-			tempTime = tempTime+getTime()-startTime;
-			if(tempTime >=interval) {
-				startTime+=tempTime;
-				tempTime=0;
+			if((getTime()-startTime)>=interval) {
+				startTime=getTime();
 				return true;
 			}
 		}

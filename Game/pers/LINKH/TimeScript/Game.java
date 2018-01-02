@@ -26,6 +26,7 @@ import pers.LINKH.Scripts.MapStruct;
 import pers.LINKH.Scripts.Peashooter;
 import pers.LINKH.Scripts.SunFlower;
 import pers.LINKH.Scripts.WallNut;
+import pers.LINKH.Scripts.Zombie;
 
 
 
@@ -33,7 +34,7 @@ public class Game extends ScriptSuper{
 	GameObject BackGround;
 	GameObject sun;
 
-	
+	LKTimer aLkTimer=new LKTimer(1000, 1000);
 	public Game(){
 		super.enable = false;
 		Scriptname = "Game";
@@ -54,12 +55,7 @@ public class Game extends ScriptSuper{
 		sun.addAnimator(new Animator( LoadAnimation.load("Assets/Sun/Sun0",".png", 1, 22),4, sun));
 		
 
-			int location = Random.Rang(0,4);
-			int shape = Random.Rang(0,2);
-
-			GameObject gameObject =new GameObject(new Vector2(500,210+location*180), 200, 200);
-			
-			gameObject.addSprite(new Sprite("Assets/Zombie/Zombie001.png",gameObject));
+		
 
 		
 		
@@ -68,9 +64,41 @@ public class Game extends ScriptSuper{
 	}
 	public void RunLoop() {
 
-		LKTimer aLkTimer =new LKTimer(1000, 0, 2000);
+		
 		if(aLkTimer.timer()) {
-			Log.Print("a");
+			int location = Random.Rang(0,5);
+			int shape = Random.Rang(0,3);
+			ZombieManager.areaZombiesSize[location]++;
+			
+			
+			GameObject gameObject =new GameObject(new Vector2(1920,210+location*180), 200, 200);
+				switch (shape) {
+					case 0:
+						gameObject.addSprite(new Sprite("Assets/Zombie/Zombie001.png",gameObject));
+						gameObject.addAnimator(new Animator(LoadAnimation.load("Assets/Zombie/Zombie0",".png", 1, 22),7,  gameObject));
+						Zombie zombie = new Zombie();
+						zombie.gameObject = gameObject;
+						ZombieManager.Zombies.add(zombie);
+						
+						break;
+					case 1:
+						gameObject.addSprite(new Sprite("Assets/Zombie2/Zombie2001.png",gameObject));
+						gameObject.addAnimator(new Animator(LoadAnimation.load("Assets/Zombie2/Zombie20",".png", 1, 31),10,  gameObject));
+						Zombie zombie2 = new Zombie();
+						zombie2.gameObject = gameObject;
+						ZombieManager.Zombies.add(zombie2);
+						
+						break;
+					case 2:
+						gameObject.addSprite(new Sprite("Assets/Zombie3/Zombie3001.png",gameObject));
+						gameObject.addAnimator(new Animator(LoadAnimation.load("Assets/Zombie3/Zombie30",".png", 1, 18),8,  gameObject));
+						Zombie zombie3 = new Zombie();
+						zombie3.gameObject = gameObject;
+						ZombieManager.Zombies.add(zombie3);
+						
+						break;
+
+				}
 		}
 		
 		
@@ -84,8 +112,10 @@ public class Game extends ScriptSuper{
 						GameObject gameObject =new GameObject(map.area.getPosition(), 100, 100);
 						gameObject.addSprite(new Sprite("Assets/Peashooter/Peashooter001.png",gameObject));
 						gameObject.addAnimator(new Animator(LoadAnimation.load("Assets/Peashooter/Peashooter0",".png", 1, 13),10, gameObject));
+						Peashooter peashooter = new Peashooter();
+						peashooter.gameObject = gameObject;
 						
-						new Peashooter().gameObject = gameObject;
+						PeashooterManager.Peashooters.add(peashooter);
 						
 						map.isOn = true;
 					}
