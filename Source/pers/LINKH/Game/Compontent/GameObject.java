@@ -124,10 +124,6 @@ public class GameObject extends Compontent implements PaintcControl,LKTween{
 		if(targetPosition != this.position)
 			move(countVec2.direction().x*speed,countVec2.direction().y*speed);
 	}
-	@Override
-	public  void pathMove(List<Vector2> path,float speed) {
-		
-	}
 	public void setPosition(Vector2 position) {
 		this.position = position;
 	}

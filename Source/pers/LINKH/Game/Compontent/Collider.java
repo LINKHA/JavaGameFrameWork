@@ -2,6 +2,7 @@ package pers.LINKH.Game.Compontent;
 
 import pers.LINKH.Game.CollisionSystem;
 import pers.LINKH.Game.Setting.Tag;
+import pers.LINKH.Game.Tools.Log;
 
 public class Collider  extends Collision {
 	RectHitBox hitBox;
@@ -10,6 +11,8 @@ public class Collider  extends Collision {
 	private  Collision collision = null;
 	private  boolean isHit = false;
 	
+	boolean begainHit = false;
+	boolean outHit = false;
 	public Collider(GameObject gameObject){
 		this.gameObject = gameObject;
 		hitBox = new RectHitBox(gameObject.getPosition(),gameObject.getWidth()
@@ -23,7 +26,7 @@ public class Collider  extends Collision {
 	}
 	@Override
 	public void begainHit() {
-		
+		begainHit = true;
 	}
 	@Override
 	public void onHit(Collision collision) {
@@ -32,7 +35,7 @@ public class Collider  extends Collision {
 	}
 	@Override
 	public void releaseHit() {
-		
+		outHit = true;
 		isHit = false;
 		this.collision = null;
 		
@@ -41,7 +44,26 @@ public class Collider  extends Collision {
 	public void move() {
 		hitBox.move(gameObject.getPosition());
 	}
-	
+	/*
+	 * 控件开始发生碰撞
+	 */
+	public boolean onHit() {
+		if(begainHit) {
+			begainHit = false;
+			return true;
+		}
+		return false;
+	}
+	/*
+	 * 控件释放碰撞
+	 */
+	public boolean outHit() {
+		if(outHit) {
+			outHit = false;
+			return true;
+		}
+		return false;
+	}
 	/*
 	 * 控件是否发生碰撞
 	 */

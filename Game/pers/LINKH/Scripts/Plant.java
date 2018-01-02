@@ -1,9 +1,10 @@
 package pers.LINKH.Scripts;
 
+import pers.LINKH.Game.Compontent.GameObject;
+
 public class Plant {
-	static int valueIndex = 0;
-	int keyValue;
-	Plant(){
-		keyValue = Plant.valueIndex++;
-	}
+	public int keyValue;
+	public int hp;
+	public GameObject gameObject;
+	public MapStruct mapStruct;
 }
