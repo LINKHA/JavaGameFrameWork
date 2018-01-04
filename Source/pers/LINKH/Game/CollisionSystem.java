@@ -25,21 +25,19 @@ public class CollisionSystem extends FrameSystem {
 	
 	public  List<ColliderMessage[]> checkCollisions(){
 		List<ColliderMessage[]> collistions = new ArrayList<ColliderMessage[]>();
-		if(colliders.size()<=1) {
-			return collistions;
-		}
 		//判断碰撞体是否在遍历后有碰撞
 		boolean s = false;
-		//ColliderMessage[] current = new ColliderMessage[2];
-
+		for(int i = 0; i < colliders.size() ; i++) {
+			colliders.get(i).collider.clear();
+		}
 		for(int i = 0; i < colliders.size() ; i++) {
 			s = false;
 			for(int n = 0; n < colliders.size(); n++) {
 				ColliderMessage[] current = new ColliderMessage[2];
 				current[0] = colliders.get(i);
 				current[1] = colliders.get(n);
-				if(current[0] .collider.getHitBox().intersects(current[1] .collider.getHitBox())) {
-					if(i!=n) {
+				if(i!=n) {
+					if((current[0] .collider.getHitBox().intersects(current[1] .collider.getHitBox()))) {
 						if(colliders.get(i).bHit==false) {
 							colliders.get(i).collider.begainHit();
 						}
@@ -60,8 +58,13 @@ public class CollisionSystem extends FrameSystem {
 		return collistions;
 	}
 	public void performCollistions() {
-		if(colliders.size()<=1) 
+		if(colliders.size()==0) {
+		
 			return;
+		}
+		else if (colliders.size()==1) {
+			colliders.get(0).collider.clear();
+		}
 		for(ColliderMessage[] current:checkCollisions()) {
 			current[0].collider.onHit(current[1].collider);
 			current[1].collider.onHit(current[0].collider);
@@ -71,7 +74,6 @@ public class CollisionSystem extends FrameSystem {
 	
 
 	public  void addCollider(Collision collider) {
-		
 		//遍历  检查是否有重复
 		for(ColliderMessage checkValue : colliders) {
 			if(checkValue.keyValue == collider.keyValue) {
@@ -79,10 +81,7 @@ public class CollisionSystem extends FrameSystem {
 				return;
 			}
 		}
-		
 		colliders.add(new ColliderMessage(collider.keyValue,collider));
-		
-		
 	}
 	public void deleteCollider(int keyValue) {
 		
@@ -107,5 +106,3 @@ public class CollisionSystem extends FrameSystem {
 		performCollistions();
 	}
 }
-	
-	

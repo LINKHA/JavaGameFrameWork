@@ -1,5 +1,7 @@
 package pers.LINKH.Game.Compontent;
 
+import java.util.List;
+
 import pers.LINKH.Game.CollisionSystem;
 import pers.LINKH.Game.Setting.Tag;
 
@@ -16,7 +18,7 @@ public abstract class Collision extends Compontent {
 	 */
 	public abstract void onHit(Collision collision);
 	/*
-	 * 释放碰撞时调用此方法
+	 * 释放所有碰撞时调用此方法
 	 * 瞬时响应
 	 */
 	public abstract void releaseHit();
@@ -32,12 +34,15 @@ public abstract class Collision extends Compontent {
 	/*
 	 * 控件碰撞对象
 	 */
-	public abstract  Collision getHit();
+	public abstract  List<Collision> getHit();
 	/*
 	 * 判断是否碰撞Tag为tag的碰撞体
 	 */
 	public abstract boolean hit(Tag tag) ;
-	
+	/*
+	 * 清空碰撞体
+	 */
+	public abstract void clear() ;
 	@Override
 	public void Destroy() {
 		CollisionSystem.getSystem().deleteCollider(keyValue);

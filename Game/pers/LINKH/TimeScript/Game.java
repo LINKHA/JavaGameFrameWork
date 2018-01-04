@@ -54,11 +54,8 @@ public class Game extends ScriptSuper{
 		sun.addSprite(new Sprite("Assets/Sun/Sun001.png", sun));
 		sun.addAnimator(new Animator( LoadAnimation.load("Assets/Sun/Sun0",".png", 1, 22),4, sun));
 		
-
-		ZombieManager.areaZombiesSize[0]++;
-		
-		
-		/*GameObject gameObject =new GameObject(new Vector2(1920,210+0*180), 200, 200,Tag.Enemy,Layout.Sprite);
+/////////////////////////////////////////////////////////////////////////////////////////////
+	/*	GameObject gameObject =new GameObject(new Vector2(1920,210+0*180), 200, 200,Tag.Enemy,Layout.Sprite);
 		
 				gameObject.addSprite(new Sprite("Assets/Zombie/Zombie001.png",gameObject));
 				gameObject.addAnimator(new Animator(LoadAnimation.load("Assets/Zombie/Zombie0",".png", 1, 22),10,  gameObject));
@@ -75,7 +72,6 @@ public class Game extends ScriptSuper{
 		new Card();
 	}
 	public void RunLoop() {
-
 		
 		createZombie();
 		
@@ -99,8 +95,7 @@ public class Game extends ScriptSuper{
 		if(aLkTimer.timer()) {
 			int location = Random.Rang(0,5);
 			int shape = Random.Rang(0,3);
-			ZombieManager.areaZombiesSize[location]++;
-			
+			print(location);
 			
 			GameObject gameObject =new GameObject(new Vector2(1920,210+location*180), 200, 200,Tag.Enemy,Layout.Sprite);
 				switch (shape) {

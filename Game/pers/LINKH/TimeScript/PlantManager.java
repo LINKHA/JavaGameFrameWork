@@ -5,6 +5,7 @@ import java.util.List;
 
 import pers.LINKH.Game.ScriptSuper;
 import pers.LINKH.Game.Compontent.Collider;
+import pers.LINKH.Game.Compontent.Collision;
 import pers.LINKH.Game.Compontent.GameObject;
 import pers.LINKH.Game.Compontent.Sprite;
 import pers.LINKH.Game.Setting.Tag;
@@ -60,11 +61,12 @@ public class PlantManager extends ScriptSuper {
 				shell.move(5.0f,0);
 				if(shell.getCollision().hit(Tag.Enemy)) {
 					shells.remove(shell);
-					
 					for(Zombie  z : ZombieManager.Zombies) {
-						if(z.keyValue == shell.getCollision().getHit().keyValue) {
-							z.hp-=10;
-							break;
+						for(Collision c : shell.getCollision().getHit()) {
+							if(c.keyValue==z.keyValue) {
+								z.hp-=10;
+								break;
+							}
 						}
 					}
 					shell.Destroy();
@@ -77,7 +79,6 @@ public class PlantManager extends ScriptSuper {
 		if(plants.size()!=0 && aTime) {
 			for(Plant p : plants) {
 				if(p.gameObject.getCollision().hit(Tag.Enemy)) {
-					print(p.hp);
 					p.hp-=10;
 					if(p.hp<=0) {
 						p.gameObject.Destroy();
