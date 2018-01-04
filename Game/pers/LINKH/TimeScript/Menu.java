@@ -7,9 +7,7 @@ import pers.LINKH.Game.Compontent.UI.Button;
 import pers.LINKH.Game.Helper.ScreenSize;
 import pers.LINKH.Game.Helper.Vector2;
 import pers.LINKH.Game.Setting.Layout;
-import pers.LINKH.Game.Tools.LoadAnimation;
 import pers.LINKH.Game.Tools.LoadImage;
-import pers.LINKH.Game.Tools.Log;
 
 public class Menu extends ScriptSuper {
 	static GameObject MainMenuGround;

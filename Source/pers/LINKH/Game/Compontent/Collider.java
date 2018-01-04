@@ -5,7 +5,6 @@ import java.util.List;
 
 import pers.LINKH.Game.CollisionSystem;
 import pers.LINKH.Game.Setting.Tag;
-import pers.LINKH.Game.Tools.Log;
 
 public class Collider  extends Collision {
 	RectHitBox hitBox;

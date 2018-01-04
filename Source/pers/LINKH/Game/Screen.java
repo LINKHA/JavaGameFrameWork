@@ -3,15 +3,10 @@ package pers.LINKH.Game;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
-import java.util.Hashtable;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 import javax.swing.JPanel;
 import pers.LINKH.Game.Compontent.Compontent;
 import pers.LINKH.Game.Compontent.GameObject;
-import pers.LINKH.Game.Setting.Layout;
-import pers.LINKH.Game.Tools.Log;
 
 
 
@@ -22,8 +17,6 @@ public class Screen extends JPanel {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private static Screen instance;
-	
 	Application baseClass;
 	private boolean fpsCounter = false;
 	

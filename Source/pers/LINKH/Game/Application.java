@@ -7,7 +7,6 @@ import pers.LINKH.Game.Helper.KeyCodeIndex;
 import pers.LINKH.Game.Helper.Vector2;
 import pers.LINKH.Game.Operate.Input;
 import pers.LINKH.Game.Setting.Setting;
-import pers.LINKH.Game.Tools.Log;
 
 
 public class Application extends JFrame{

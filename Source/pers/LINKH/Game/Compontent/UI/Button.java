@@ -3,7 +3,6 @@ package pers.LINKH.Game.Compontent.UI;
 import java.awt.Image;
 import pers.LINKH.Game.UISystem;
 import pers.LINKH.Game.Compontent.GameObject;
-import pers.LINKH.Game.Tools.Log;
 
 public class Button extends UICompontent {
 	boolean mouseHit = false;

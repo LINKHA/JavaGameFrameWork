@@ -4,30 +4,34 @@ import java.util.ArrayList;
 import java.util.List;
 
 import pers.LINKH.Game.ScriptSuper;
+import pers.LINKH.Game.Compontent.Animator;
 import pers.LINKH.Game.Compontent.Collider;
 import pers.LINKH.Game.Compontent.Collision;
 import pers.LINKH.Game.Compontent.GameObject;
 import pers.LINKH.Game.Compontent.Sprite;
+import pers.LINKH.Game.Compontent.UI.Button;
+import pers.LINKH.Game.Helper.Vector2;
 import pers.LINKH.Game.Setting.Tag;
 import pers.LINKH.Game.Tools.LKTimer;
-import pers.LINKH.Game.Tools.Log;
-import pers.LINKH.Game.Tools.Random;
-import pers.LINKH.Scripts.GameMap;
-import pers.LINKH.Scripts.MapStruct;
+import pers.LINKH.Game.Tools.LoadAnimation;
 import pers.LINKH.Scripts.Peashooter;
 import pers.LINKH.Scripts.Plant;
 import pers.LINKH.Scripts.SunFlower;
+import pers.LINKH.Scripts.SunManager;
 import pers.LINKH.Scripts.Zombie;
 
 public class PlantManager extends ScriptSuper {
 
 	public static List<Peashooter> Peashooters = new ArrayList<Peashooter>();
+	public static List<SunFlower> sunFlowers = new ArrayList<SunFlower>();
 	public static List<Plant> plants = new ArrayList<Plant>();
 	
 	
 	private List<GameObject> shells = new ArrayList<GameObject>();
+	private List<GameObject> suns = new ArrayList<GameObject>();
 	
-	LKTimer aLkTimer=new LKTimer(1000, 0);
+	LKTimer aLkTimer=new LKTimer(2000, 0);
+	LKTimer sLkTimer=new LKTimer(20000, 0);
 	@Override
 	public void Init() {
 		// TODO Auto-generated method stub
@@ -37,7 +41,31 @@ public class PlantManager extends ScriptSuper {
 	@Override
 	public void RunLoop() {
 		boolean aTime = aLkTimer.timer();
-
+		boolean sTime = sLkTimer.timer();
+		if(sunFlowers.size()!=0) {
+			if(sTime) {
+				for(SunFlower s : sunFlowers) {
+					if(aTime) {
+						GameObject sun = new GameObject( new Vector2(s.gameObject.getPosition().x+50,s.gameObject.getPosition().y-50)  ,  80, 80);
+						sun.addSprite(new Sprite("Assets/PB.png",sun));
+						sun.addAnimator(new Animator( LoadAnimation.load("Assets/Sun/Sun0",".png", 1, 22),4, sun));
+						sun.addButton(new Button(sun));
+						suns.add(sun);
+					}
+				}
+			}
+		}
+		if(suns.size()!=0) {
+			for(GameObject s :suns ) {
+				if(s.getButton().mouseDown()) {
+					SunManager.flashSunValue(50);
+					s.Destroy();
+					suns.remove(s);
+					break;
+				}
+			}
+		}
+		
 		if(Peashooters.size()!=0) {
 			//得到豌豆射手垂直位置
 			int Hortarial;
@@ -45,7 +73,7 @@ public class PlantManager extends ScriptSuper {
 				Hortarial = (int) ((p.gameObject.getPosition().y-230)/180.0f);
 				if(aTime && ZombieManager.areaZombiesSize[Hortarial]!=0) {
 					//发射炮弹
-					GameObject shell = new GameObject(p.gameObject.getPosition() ,  80, 50);
+					GameObject shell = new GameObject(new Vector2(p.gameObject.getPosition().x+15 , p.gameObject.getPosition().y-35) ,  80, 50);
 					shell.addSprite(new Sprite("Assets/PB.png",shell));
 					shell.addCollider(new Collider(shell));
 					shells.add(shell);
@@ -81,10 +109,10 @@ public class PlantManager extends ScriptSuper {
 				if(p.gameObject.getCollision().hit(Tag.Enemy)) {
 					p.hp-=10;
 					if(p.hp<=0) {
-						p.gameObject.Destroy();
+						Peashooters.remove(p);
 						plants.remove(p);
+						p.gameObject.Destroy();
 						p.mapStruct.isOn=false;
-						
 						break;
 					}
 				}

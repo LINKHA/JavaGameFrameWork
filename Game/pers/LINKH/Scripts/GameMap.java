@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import pers.LINKH.Game.Compontent.GameObject;
-import pers.LINKH.Game.Compontent.Sprite;
 import pers.LINKH.Game.Helper.Vector2;
 
 public class GameMap {

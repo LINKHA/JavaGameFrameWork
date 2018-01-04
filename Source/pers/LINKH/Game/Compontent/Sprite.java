@@ -14,7 +14,6 @@ public class Sprite extends Compontent {
 	}
 	public  Sprite(String imageName,GameObject gameObject) {
 		image = LoadImage.load(imageName);
-		this.image =image;
 		this.gameObject = gameObject;
 	}
 	@Override

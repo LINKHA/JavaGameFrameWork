@@ -3,37 +3,34 @@ package pers.LINKH.TimeScript;
 import pers.LINKH.Game.ScriptSuper;
 import pers.LINKH.Game.Compontent.Animator;
 import pers.LINKH.Game.Compontent.Collider;
-import pers.LINKH.Game.Compontent.Collision;
 import pers.LINKH.Game.Compontent.GameObject;
-import pers.LINKH.Game.Compontent.RectHitBox;
 import pers.LINKH.Game.Compontent.Sprite;
-import pers.LINKH.Game.Compontent.UI.Button;
 import pers.LINKH.Game.Helper.ScreenSize;
 import pers.LINKH.Game.Helper.Vector2;
 import pers.LINKH.Game.Operate.Input;
 import pers.LINKH.Game.Setting.Layout;
-import pers.LINKH.Game.Setting.Setting;
 import pers.LINKH.Game.Setting.Tag;
 import pers.LINKH.Game.Tools.LoadAnimation;
-import pers.LINKH.Game.Tools.LoadImage;
-import pers.LINKH.Game.Tools.Log;
 import pers.LINKH.Game.Tools.Random;
 import pers.LINKH.Game.Tools.LKTimer;
 import pers.LINKH.Scripts.Card;
 import pers.LINKH.Scripts.GameMap;
-import pers.LINKH.Scripts.GameWorldSetting;
 import pers.LINKH.Scripts.MapStruct;
 import pers.LINKH.Scripts.Peashooter;
 import pers.LINKH.Scripts.SunFlower;
+import pers.LINKH.Scripts.SunManager;
 import pers.LINKH.Scripts.WallNut;
 import pers.LINKH.Scripts.Zombie;
 
 
 
 public class Game extends ScriptSuper{
+	
 	GameObject BackGround;
 	GameObject sun;
 
+
+	
 	LKTimer aLkTimer=new LKTimer(5000, 1000);
 	public Game(){
 		super.enable = false;
@@ -43,6 +40,15 @@ public class Game extends ScriptSuper{
 	
 	public void Init() {
 		
+		
+		SunManager.B = new GameObject( new Vector2(150,120), 40, 40,Layout.Wall);
+		SunManager.B.addSprite(new Sprite("Assets/Number/"+SunManager.sunValue/1%10+".png",SunManager.B)); 
+		
+		SunManager.S = new GameObject( new Vector2(120,120), 40, 40,Layout.Wall);
+		SunManager.S.addSprite(new Sprite("Assets/Number/"+(SunManager.sunValue/ 10 % 10)+".png",SunManager.S)); 
+
+		SunManager.G = new GameObject( new Vector2(90,120), 40, 40,Layout.Wall);
+		SunManager.G.addSprite(new Sprite("Assets/Number/"+SunManager.sunValue / 100 % 10+".png",SunManager.G)); 
 		
 		
 		BackGround =new GameObject( new Vector2(ScreenSize.WIDTH/2,ScreenSize.HEIGHT/2), ScreenSize.WIDTH, ScreenSize.HEIGHT,Layout.BackGround);
@@ -54,24 +60,12 @@ public class Game extends ScriptSuper{
 		sun.addSprite(new Sprite("Assets/Sun/Sun001.png", sun));
 		sun.addAnimator(new Animator( LoadAnimation.load("Assets/Sun/Sun0",".png", 1, 22),4, sun));
 		
-/////////////////////////////////////////////////////////////////////////////////////////////
-	/*	GameObject gameObject =new GameObject(new Vector2(1920,210+0*180), 200, 200,Tag.Enemy,Layout.Sprite);
-		
-				gameObject.addSprite(new Sprite("Assets/Zombie/Zombie001.png",gameObject));
-				gameObject.addAnimator(new Animator(LoadAnimation.load("Assets/Zombie/Zombie0",".png", 1, 22),10,  gameObject));
-				gameObject.addCollider(new Collider(gameObject));
-				
-				Zombie zombie = new Zombie();
-				zombie.gameObject = gameObject;
-				zombie.keyValue = gameObject.keyValue;
-				ZombieManager.Zombies.add(zombie);*/
-
-		
-		
 		new GameMap();
 		new Card();
 	}
 	public void RunLoop() {
+		
+		
 		
 		createZombie();
 		
@@ -95,7 +89,6 @@ public class Game extends ScriptSuper{
 		if(aLkTimer.timer()) {
 			int location = Random.Rang(0,5);
 			int shape = Random.Rang(0,3);
-			print(location);
 			
 			GameObject gameObject =new GameObject(new Vector2(1920,210+location*180), 200, 200,Tag.Enemy,Layout.Sprite);
 				switch (shape) {
@@ -145,7 +138,7 @@ public class Game extends ScriptSuper{
 			if(Card.PeashooterOn==true) {
 				Card.peashooterMove.Destroy();
 				for(MapStruct map:GameMap.PlantArea) {
-					if(isHitArea(map.area) && !map.isOn) {
+					if(isHitArea(map.area) && !map.isOn&& SunManager.sunValue>=100) {
 						GameObject gameObject =new GameObject(map.area.getPosition(), 100, 100,Tag.Player,Layout.Sprite);
 						gameObject.addSprite(new Sprite("Assets/Peashooter/Peashooter001.png",gameObject));
 						gameObject.addAnimator(new Animator(LoadAnimation.load("Assets/Peashooter/Peashooter0",".png", 1, 13),15, gameObject));
@@ -158,6 +151,7 @@ public class Game extends ScriptSuper{
 						peashooter.mapStruct = map;
 						PlantManager.Peashooters.add(peashooter);
 						PlantManager.plants.add(peashooter);
+						SunManager.flashSunValue(-100);
 						map.isOn = true;
 					}
 				}
@@ -166,7 +160,7 @@ public class Game extends ScriptSuper{
 			if(Card.SunFlowerOn==true) {
 				Card.SunFlowerMove.Destroy();
 				for(MapStruct map:GameMap.PlantArea) {
-					if(isHitArea(map.area) && !map.isOn) {
+					if(isHitArea(map.area) && !map.isOn&& SunManager.sunValue>=50) {
 						GameObject gameObject =new GameObject(map.area.getPosition(), 100, 100,Tag.Player,Layout.Sprite);
 						gameObject.addSprite(new Sprite("Assets/SunFlower/SunFlower001.png",gameObject));
 						gameObject.addAnimator(new Animator(LoadAnimation.load("Assets/SunFlower/SunFlower0",".png", 1, 18),10, gameObject));
@@ -177,7 +171,10 @@ public class Game extends ScriptSuper{
 						sunFlower.keyValue = gameObject.keyValue;
 						sunFlower.hp = 50;
 						sunFlower.mapStruct = map;
+						PlantManager.sunFlowers.add(sunFlower);
 						PlantManager.plants.add(sunFlower);
+						
+						SunManager.flashSunValue(-50);
 						map.isOn = true;
 					}
 				}
@@ -186,7 +183,7 @@ public class Game extends ScriptSuper{
 			if(Card.WallNutOn == true) {
 				Card.WallNutMove.Destroy();
 				for(MapStruct map:GameMap.PlantArea) {
-					if(isHitArea(map.area) && !map.isOn) {
+					if(isHitArea(map.area) && !map.isOn && SunManager.sunValue>=100) {
 						GameObject gameObject =new GameObject(map.area.getPosition(), 100, 100,Tag.Player,Layout.Sprite);
 						gameObject.addSprite(new Sprite("Assets/WallNut/WallNut001.png",gameObject));
 						gameObject.addAnimator(new Animator(LoadAnimation.load("Assets/WallNut/WallNut0",".png", 1, 16),10, gameObject));
@@ -198,6 +195,7 @@ public class Game extends ScriptSuper{
 						wallNut.hp = 200;
 						wallNut.mapStruct = map;
 						PlantManager.plants.add(wallNut);
+						SunManager.flashSunValue(-100);
 						map.isOn = true;
 					}
 				}
@@ -233,6 +231,6 @@ public class Game extends ScriptSuper{
 		if(Card.WallNutCard.getButton().mouseDown()) {
 			Card.WallNutMove.setPosition(Input.getMouseLocation());
 		}
-		
 	}
+	
 }

@@ -2,7 +2,6 @@ package pers.LINKH.Game.Compontent;
 
 import java.awt.Graphics;
 import java.awt.Image;
-import java.util.List;
 
 import pers.LINKH.Game.PaintcControl;
 import pers.LINKH.Game.Screen;
@@ -12,7 +11,6 @@ import pers.LINKH.Game.Setting.Layout;
 import pers.LINKH.Game.Setting.Setting;
 import pers.LINKH.Game.Setting.Tag;
 import pers.LINKH.Game.Tools.LKTween;
-import pers.LINKH.Game.Tools.Log;
 public class GameObject extends Compontent implements PaintcControl,LKTween{
 	protected boolean visible = true;
 	private Vector2 position = new Vector2();

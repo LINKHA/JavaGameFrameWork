@@ -5,15 +5,19 @@ import java.util.List;
 
 import pers.LINKH.Game.ScriptSuper;
 import pers.LINKH.Game.Compontent.Animator;
+import pers.LINKH.Game.Compontent.GameObject;
+import pers.LINKH.Game.Compontent.Sprite;
+import pers.LINKH.Game.Helper.ScreenSize;
+import pers.LINKH.Game.Helper.Vector2;
 import pers.LINKH.Game.Setting.Tag;
 import pers.LINKH.Game.Tools.LoadAnimation;
-import pers.LINKH.Game.Tools.Log;
 import pers.LINKH.Scripts.Zombie;
 
 public class ZombieManager extends ScriptSuper {
 	public static List<Zombie> Zombies = new ArrayList<Zombie>();
 	public static int[] areaZombiesSize = new int[5];
 	
+	private boolean zombieWin = false;
 	
 	@Override
 	public void Init() {
@@ -44,13 +48,13 @@ public class ZombieManager extends ScriptSuper {
 		if(Zombies.size()!=0) {
 			for(Zombie z : Zombies) {
 				if(z.hp<=0) {
+					
 					z.gameObject.Destroy();
 					
 					Zombies.remove(z);
 					break;
 				}
 				if(z.gameObject.getCollision().hit(Tag.Player)) {
-					Log.Print(z.gameObject.getCollision().getHit().size());
 					
 					if(!z.isAttack) {
 						z.isAttack = true;
@@ -73,7 +77,18 @@ public class ZombieManager extends ScriptSuper {
 							break;
 						}
 					}
-					z.gameObject.move(-0.15f,0);
+					z.gameObject.move(-5.15f,0);
+				}
+			}
+		}
+		if(Zombies.size()!=0) {
+			for(Zombie z : Zombies) {
+				if(!zombieWin && z.gameObject.getPosition().x<=0) {
+					z.gameObject.Destroy();
+					GameObject zombieWon = new GameObject(new Vector2(ScreenSize.WIDTH/2,ScreenSize.HEIGHT/2), ScreenSize.WIDTH, ScreenSize.HEIGHT);
+					zombieWon.addSprite(new Sprite("Assets/ZombiesWon.png",zombieWon));
+					zombieWin = true;
+					break;
 				}
 			}
 		}

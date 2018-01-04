@@ -11,7 +11,6 @@ public class Setting {
 	 */
 	//即时调用包
 	public static String ScriptPackName = "pers.LINKH.TimeScript"; 
-	//public static String ScriptPackName = "test";
 	//设置窗口锚点
 	public static Vector2 WindowRect = new Vector2(Vector2.zero());
 	//设置窗口大小

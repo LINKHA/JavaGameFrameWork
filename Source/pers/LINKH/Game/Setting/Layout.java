@@ -32,7 +32,6 @@ Default;
 
 
 	private  int value;
-	private static int nextValue;
 	Layout(){
 		 this(Counter.nextValue);
 	}
