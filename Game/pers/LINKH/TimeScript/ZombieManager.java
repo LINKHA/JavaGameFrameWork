@@ -77,7 +77,7 @@ public class ZombieManager extends ScriptSuper {
 							break;
 						}
 					}
-					z.gameObject.move(-5.15f,0);
+					z.gameObject.move(-0.15f,0);
 				}
 			}
 		}
