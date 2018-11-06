@@ -37,13 +37,18 @@ public class Game extends ScriptSuper{
 	boolean isJump = false;
 	int frameCount = 0;
 	final static int FRAME_COUNT_DEFINE = 50;
-	
+	/// 这是时间控制器 0毫秒延时后 每4000毫秒返回一次true
 	LKTimer aLkTimer=new LKTimer(4000, 0);
+	/**
+	* @brief : 设置其为false使得不会在游戏开始时开启 
+	*/
 	public Game(){
 		super.enable = false;
 		Scriptname = "Game";
 	}
-
+	/**
+	* @brief :  设置player 以及两个背景图像
+	*/
 	public void Init() {
 		gameObject =new GameObject( new Vector2(ScreenSize.WIDTH/2 - 500,ScreenSize.HEIGHT/2), 200, 200);
 		gameObject.addSprite(new Sprite("Assets/bird2_001.png",gameObject));
@@ -57,7 +62,11 @@ public class Game extends ScriptSuper{
 		MainMenuGround2.addSprite(new Sprite("Assets/bg_day.png",MainMenuGround2));
 		
 	}
+	
 	public void RunLoop() {
+///////////////////////////////////////////////////////////////////////////
+//@brief :  设置背景对象移动并重置位置
+
 		MainMenuGround2.move(-1, 0);
 		MainMenuGround.move(-1, 0);
 		if(MainMenuGround.getPosition().x<=-(ScreenSize.WIDTH/2))
@@ -65,14 +74,22 @@ public class Game extends ScriptSuper{
 		
 		if(MainMenuGround2.getPosition().x<=-(ScreenSize.WIDTH/2))
 			MainMenuGround2.setPosition(ScreenSize.WIDTH* 1.5f,ScreenSize.HEIGHT/2);
-		
+
+//////////////////////////////////////////////////////////////////////////
+		///得到时间控制器boolean值
 		boolean aTime = aLkTimer.timer();
+		///每4000毫秒创建一次管道
 		if(aTime)
 			CreatePipe();
+		///判断player是否碰撞管道以及边界
 		DetermineCollide();
+		
 		MovePipe();
+		///删除移到左边的管道
 		DeletePipe();
+		///控制player自由落体  以及向上减速度
 		BirdMove(isJump);
+		///如果鼠标点击  player跳
 		if(Input.hitMouse()){
 			frameCount = FRAME_COUNT_DEFINE;
 			isJump = true;
