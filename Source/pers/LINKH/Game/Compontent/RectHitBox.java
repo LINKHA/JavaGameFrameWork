@@ -29,10 +29,10 @@ public class RectHitBox{
         if (rw <= 0 || rh <= 0 || tw <= 0 || th <= 0) {
             return false;
         }
-        int tx = (int)objectLocation.x;
-        int ty = (int)objectLocation.y;
-        int rx = (int)r.objectLocation.x;
-        int ry = (int)r.objectLocation.y;
+        int tx = (int)objectLocation.x - tw/2;
+        int ty = (int)objectLocation.y - th/2;
+        int rx = (int)r.objectLocation.x - rw/2;
+        int ry = (int)r.objectLocation.y - rh/2;
         rw += rx;
         rh += ry;
         tw += tx;
